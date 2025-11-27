@@ -217,7 +217,6 @@ section {
   transition: opacity 0.1s ease-in-out;
 }
 
-
 /* Fix especial Safari/iPhone */
 @supports (-webkit-touch-callout: none) {
   .bg-video {
@@ -315,7 +314,7 @@ footer ul li.footer-logo {
 }
 
 footer ul li.footer-logo img {
-  height: 100px;
+  height: 110px; /* ligeramente más grande para mejor legibilidad */
   width: auto;
   display: block;
   line-height: 2.5;
@@ -658,22 +657,24 @@ footer ul li.footer-logo img {
 /* Ítem individual */
 .logo-item {
   flex: 0 0 auto;
-  padding: 10px 16px;
-  border-radius: 12px;
+  padding: 12px 20px;
+  border-radius: 16px;
   transition: all 0.25s ease;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.04);   /* mejor contraste para logos */
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
 /* IMÁGENES MÁS NÍTIDAS Y DEFINIDAS */
 .logo-item img {
-  max-height: 58px;
+  max-height: 70px;                   /* MÁS GRANDES EN DESKTOP */
   width: auto;
-  opacity: 0.9;
-  filter: grayscale(60%) brightness(0.95);
+  opacity: 1;
+  filter: grayscale(25%) brightness(1.15) contrast(1.05); /* mejor legibilidad */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: high-quality;
@@ -683,16 +684,15 @@ footer ul li.footer-logo img {
 /* Hover */
 .logo-item:hover img {
   opacity: 1;
-  filter: grayscale(0%) brightness(1.05);
-  transform: scale(1.20);
+  filter: grayscale(0%) brightness(1.2) contrast(1.1);
+  transform: scale(1.15);
 }
 
 .logo-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: scale(1.12);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255, 255, 255, 0.09);
+  transform: scale(1.08);
+  border: 1px solid rgba(255,255,255,0.14);
 }
-
 
 /* Botones de navegación */
 .logos-nav {
@@ -720,6 +720,18 @@ footer ul li.footer-logo img {
 /* RESPONSIVE BREAKPOINTS GENERALES */
 /* ------------------------------------- */
 
+@media (max-width: 1200px) {
+  .section-inner {
+    bottom: 160px;
+    left: 80px;
+    max-width: 480px;
+  }
+
+  .section-inner h2 {
+    font-size: 40px;
+  }
+}
+
 @media (max-width: 960px) {
   .desktop-main-menu { display: none; }
   .mobile-only { display: block; }
@@ -733,6 +745,16 @@ footer ul li.footer-logo img {
     height: auto;
     min-height: 100vh;
     padding-bottom: 60px;
+  }
+
+  .section-inner {
+    bottom: 140px;
+    left: 40px;
+    max-width: 420px;
+  }
+
+  .section-inner h2 {
+    font-size: 34px;
   }
 
   .section-inner-center h3 { font-size: 75px; }
@@ -761,6 +783,11 @@ footer ul li.footer-logo img {
   .contact-form {
     padding: 20px 18px 18px;
   }
+
+  /* Logos un poco más pequeños pero claros */
+  .logo-item img {
+    max-height: 56px;
+  }
 }
 
 /* ----------- Mobile "medio" (teléfonos grandes) ----------- */
@@ -772,6 +799,9 @@ footer ul li.footer-logo img {
 
   .section-inner {
     margin-top: 100px;
+    left: 0;
+    bottom: auto;
+    max-width: 100%;
     padding: 0 20px;
   }
 
@@ -799,6 +829,7 @@ footer ul li.footer-logo img {
   .logos-wrapper {
     flex-direction: column;
     align-items: flex-start;
+    gap: 16px;
   }
 
   .logos-slider {
@@ -809,8 +840,13 @@ footer ul li.footer-logo img {
     gap: 28px;
   }
 
+  .logo-item {
+    padding: 10px 16px;
+    border-radius: 14px;
+  }
+
   .logo-item img {
-    max-height: 36px;
+    max-height: 44px;  /* más grandes que antes para que se vean mejor */
   }
 
   .logos-nav {
@@ -836,6 +872,7 @@ footer ul li.footer-logo img {
 
   .section-inner {
     margin-top: 95px;
+    padding: 0 18px;
   }
 
   .section-inner h4 {
@@ -864,7 +901,18 @@ footer ul li.footer-logo img {
   .stats div {
     margin-bottom: 20px;
   }
+
+  /* Logos bien visibles en pantallas muy pequeñas */
+  .logo-item {
+    padding: 10px 14px;
+  }
+
+  .logo-item img {
+    max-height: 40px;
+    filter: grayscale(10%) brightness(1.2); /* aún más claros en pantallas pequeñas */
+  }
 }
+
 /* ========================================= */
 /* ALERTA DE FORMULARIO (ÉXITO / ERROR)     */
 /* ========================================= */
