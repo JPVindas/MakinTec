@@ -1,94 +1,54 @@
-🚀 MAKINTEC · Landing Page Corporativa
-Plataforma web diseñada para potenciar la presencia digital de una empresa industrial líder en Costa Rica.
+# ⚙️ MAKINTEC: Soporte y Asesoría Industrial [cite: 5, 6]
 
-MAKINTEC es un sitio web profesional desarrollado para fortalecer la identidad digital de la empresa Makin-Tec Soporte y Asesoría Industrial, una compañía con más de 25 años de experiencia en metalmecánica, mantenimiento industrial y diseño de transportadores.
+## ✨ Sobre el Proyecto Web
 
-Este proyecto se creó como una landing page moderna, visual y de alta conversión, enfocada en comunicar confianza, trayectoria y especialización técnica, así como facilitar el contacto directo con clientes y aliados comerciales.
+[cite_start]Este repositorio contiene el Sitio Web Oficial de MAKINTEC [cite: 5][cite_start], desarrollado para presentar nuestra propuesta de valor y servicios especializados en el sector metalmecánico industrial[cite: 13, 15].
 
-🎯 Objetivo del Proyecto
+### 💻 Stack Tecnológico
 
-Diseñar y desarrollar un sitio web rápido, elegante y totalmente responsivo que permita a MAKINTEC:
+El proyecto está construido con las siguientes tecnologías:
 
-Mejorar su presencia digital ante clientes industriales.
+* **HTML5:** Estructura y contenido semántico.
+* **CSS3:** Diseño y presentación visual.
+* **JavaScript (JS):** Interactividad y experiencia del usuario.
 
-Mostrar sus servicios clave de forma clara y profesional.
+## 🏭 La Empresa: MAKINTEC
 
-Resaltar su experiencia con marcas reconocidas como Dos Pinos, Unilever, Smurfit Kappa, TechTop, entre otras.
+[cite_start]MAKINTEC es un taller metalmecánico industrial especializado en la fabricación, mantenimiento y reparación de partes y estructuras metálicas[cite: 18]. [cite_start]Nuestra misión es asegurar mejoras operativas, buscando el balance entre **calidad y economía** [cite: 10, 12][cite_start], con la visión de ser referentes en la industria en el desarrollo de **soluciones metalmecánicas**[cite: 13].
 
-Facilitar el contacto comercial mediante un formulario optimizado.
+[cite_start]Contamos con personal con más de **25 años de experiencia** en la industria [cite: 1, 19][cite_start], lo que respalda nuestro compromiso y calidad[cite: 4].
 
-Servir como base para futuras mejoras, incluyendo un sistema administrativo interno si la empresa así lo requiere.
+## 🛠️ Servicios Especializados
 
-🛠️ Tecnologías Utilizadas
+[cite_start]Somos expertos en la fabricación, mantenimiento y reparación de partes y estructuras metálicas[cite: 18]. Nuestros servicios clave incluyen:
 
-Este proyecto está construido con una arquitectura moderna orientada al rendimiento y la experiencia de usuario:
+* [cite_start]**Soporte Electromecánico:** Asesoría y mejora a maquinaria industrial[cite: 22].
+* [cite_start]**Metalmecánica de Precisión:** Fabricación de estructuras y reparación de maquinaria[cite: 25].
+* **Fabricación Técnica Avanzada:**
+    * [cite_start]Soldaduras y estructuras para procesos **sanitarios y alimenticios**[cite: 23].
+    * [cite_start]Fabricación en **acero inoxidable** (series 300, 400 y sanitarios en 316L)[cite: 24].
+    * [cite_start]Fabricación y reparación de **transportadores**[cite: 26].
 
-HTML5 – estructura semántica optimizada.
+### 🏥 Sectores de Enfoque
 
-CSS3 / Animaciones – diseño premium, oscuro, industrial y con efectos visuales fluidos.
+[cite_start]Atendemos las necesidades de diversas industrias[cite: 18], incluyendo:
 
-JavaScript Vanilla – interactividad, carruseles, menús, transiciones y sistema de notificaciones.
+* [cite_start]Alimenticio [cite: 18]
+* [cite_start]Manufactura [cite: 18]
+* [cite_start]Médica [cite: 18]
 
-Formspree API – envío de formularios sin backend adicional.
+## 🤝 Clientes y Referencias
 
-Videos en alta calidad – secciones con videos industriales reales para aumentar credibilidad.
+[cite_start]Nuestra trayectoria es respaldada por el servicio prestado a empresas líderes en sus respectivos sectores[cite: 27].
 
-Optimización SEO – etiquetas meta, estructura limpia y carga eficiente.
+* [cite_start]TECH TOP Motor Industries [cite: 28]
+* [cite_start]UNILEVER de Costa Rica [cite: 29, 30]
+* [cite_start]SMURFIT KAPPA [cite: 31, 32]
+* [cite_start]DOS PINOS [cite: 32]
+* [cite_start]TecniBandas [cite: 32]
 
-✨ Funcionalidades Principales
-🔹 Portada interactiva
+---
 
-Video hero fullscreen que resalta la calidad del trabajo industrial.
+### **ℹ️ Nota Importante**
 
-🔹 Sección de servicios
-
-Descripción clara de las 3 áreas principales de MAKINTEC:
-
-Mantenimiento y reparación
-
-Transportadores a la medida
-
-Estructuras metálicas
-
-🔹 Carrusel de marcas
-
-Muestra empresas reales con las que se ha trabajado, con animaciones y loop infinito.
-
-🔹 Formulario de contacto mejorado
-
-Validación
-
-Envío por AJAX
-
-Notificación animada en pantalla (sin abrir nuevas pestañas)
-
-🔹 Diseño totalmente responsivo
-
-Compatible con móviles, tablets y pantallas grandes.
-
-🧩 Futuras Mejoras (si el cliente lo desea)
-
-Este sitio es una maqueta funcional, pero puede ampliarse para convertirse en un sistema completo:
-
-Panel administrativo para gestionar proyectos, fotos y clientes.
-
-Sistema de cotizaciones internas.
-
-Base de datos de clientes y seguimiento CRM.
-
-Módulo de solicitudes de mantenimiento.
-
-Dashboard para reportes industriales.
-
-📦 Estado del Proyecto
-
-✔️ Versión actual: Landing Page completa y 100% funcional
-⚙️ Preparado para mejoras a medida según necesidades del cliente
-
-📬 Contacto del desarrollador
-
-Juan Pablo Vindas Suárez
-Full-Stack Developer · Sistemas & Automatización
-GitHub: https://github.com/Juanpablo-vindas
-
-LinkedIn: https://www.linkedin.com/in/juanpablovindassuarez
+Para información de contacto, por favor visite el sitio web publicado.
