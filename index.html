@@ -9,6 +9,7 @@
     <link rel="preload" as="video" href="img/Mi video-8.mp4" type="video/mp4" />
     <link rel="preload" as="video" href="img/Mi video-10.mp4" type="video/mp4" />
     <link rel="preload" as="video" href="img/Mi video-11.mp4" type="video/mp4" />
+    <link rel="preload" as="video" href="img/Mi video-14.mp4" type="video/mp4" />
 
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js" defer></script>
@@ -70,7 +71,7 @@
         <source src="img/Mi video-8.mp4" type="video/mp4" />
       </video>
 
-      <div class="section-inner">
+      <div class="section-inner section-inner--hero">
         <h4>Más de 25 años de experiencia</h4>
         <h2>Soporte y asesoría industrial</h2>
         <a href="#contacto" class="btn">
@@ -91,134 +92,141 @@
       </div>
     </section>
 
-    <!-- SECTION B (SERVICIOS) -->
-    <section
-      id="servicios"
-      class="section-b"
+<!-- SECTION B (SERVICIOS CON VIDEO 14 DE FONDO) -->
+<section id="servicios" class="section-b">
+  <video
+    class="bg-video bg-video-servicios"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+  >
+    <!-- IMPORTANTE: la ruta debe coincidir EXACTO con la carpeta / nombre del archivo -->
+    <source src="img/Mi video-14.mp4" type="video/mp4" />
+    Tu navegador no soporta el elemento de video.
+  </video>
+
+  <div class="section-inner">
+    <h4>Soluciones que mantienen su planta en movimiento</h4>
+    <h2>Servicios especializados MAKINTEC</h2>
+
+    <p
       style="
-        background-color:#000;
-        background-image: url('img/fondoConlogo.jpg');
-        background-size: contain;
-        background-position: right center;
-        background-repeat: no-repeat;
+        max-width: 620px;
+        margin-top: 14px;
+        text-transform: none;
+        font-size: 16px;
+        line-height: 1.6;
       "
     >
-      <div class="section-inner">
-        <h4>Soluciones que mantienen su planta en movimiento</h4>
-        <h2>Servicios especializados MAKINTEC</h2>
+      Combinamos <strong>metalmecánica industrial</strong>,
+      <strong>mecánica de precisión</strong> y
+      <strong>diseño de transportadores</strong> para que sus líneas
+      de producción trabajen con menos paros, más seguridad y mejor rendimiento.
+    </p>
 
-        <p
+    <div
+      style="
+        margin-top: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        max-width: 720px;
+      "
+    >
+      <div
+        style="
+          flex: 1 1 210px;
+          border: 1px solid #333;
+          padding: 16px 18px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, #111, #050505);
+        "
+      >
+        <h5
           style="
-            max-width: 620px;
-            margin-top: 14px;
-            text-transform: none;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size:14px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:#999;
           "
         >
-          Combinamos <strong>metalmecánica industrial</strong>,
-          <strong>mecánica de precisión</strong> y
-          <strong>diseño de transportadores</strong> para que sus líneas
-          de producción trabajen con menos paros, más seguridad y mejor rendimiento.
+          Mantenimiento y reparación
+        </h5>
+        <p style="margin-top:6px; font-size:14px; text-transform:none;">
+          Planes de mantenimiento, reparaciones críticas y atención en sitio para
+          minimizar tiempos de paro.
         </p>
+      </div>
 
-        <div
+      <div
+        style="
+          flex: 1 1 210px;
+          border: 1px solid #333;
+          padding: 16px 18px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, #111, #050505);
+        "
+      >
+        <h5
           style="
-            margin-top: 24px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            max-width: 720px;
+            font-size:14px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:#999;
           "
         >
-          <div
-            style="
-              flex: 1 1 210px;
-              border: 1px solid #333;
-              padding: 16px 18px;
-              border-radius: 10px;
-              background: linear-gradient(135deg, #111, #050505);
-            "
-          >
-            <h5
-              style="
-                font-size:14px;
-                letter-spacing:1px;
-                text-transform:uppercase;
-                color:#999;
-              "
-            >
-              Mantenimiento y reparación
-            </h5>
-            <p style="margin-top:6px; font-size:14px; text-transform:none;">
-              Planes de mantenimiento, reparaciones críticas y atención en sitio para
-              minimizar tiempos de paro.
-            </p>
-          </div>
-
-          <div
-            style="
-              flex: 1 1 210px;
-              border: 1px solid #333;
-              padding: 16px 18px;
-              border-radius: 10px;
-              background: linear-gradient(135deg, #111, #050505);
-            "
-          >
-            <h5
-              style="
-                font-size:14px;
-                letter-spacing:1px;
-                text-transform:uppercase;
-                color:#999;
-              "
-            >
-              Transportadores a la medida
-            </h5>
-            <p style="margin-top:6px; font-size:14px; text-transform:none;">
-              Diseño, fabricación y mejora de bandas transportadoras según el flujo real
-              de su planta.
-            </p>
-          </div>
-
-          <div
-            style="
-              flex: 1 1 210px;
-              border: 1px solid #333;
-              padding: 16px 18px;
-              border-radius: 10px;
-              background: linear-gradient(135deg, #111, #050505);
-            "
-          >
-            <h5
-              style="
-                font-size:14px;
-                letter-spacing:1px;
-                text-transform:uppercase;
-                color:#999;
-              "
-            >
-              Estructuras metálicas
-            </h5>
-            <p style="margin-top:6px; font-size:14px; text-transform:none;">
-              Plataformas, soportes, guardas y adecuaciones metálicas diseñadas para
-              resistir el trabajo diario.
-            </p>
-          </div>
-        </div>
+          Transportadores a la medida
+        </h5>
+        <p style="margin-top:6px; font-size:14px; text-transform:none;">
+          Diseño, fabricación y mejora de bandas transportadoras según el flujo real
+          de su planta.
+        </p>
       </div>
 
-      <div class="scroll-arrow">
-        <svg width="30px" height="20px">
-          <path
-            stroke="#ffffff"
-            fill="none"
-            stroke-width="2px"
-            d="M2.000,5.000 L15.000,18.000 L28.000,5.000"
-          ></path>
-        </svg>
+      <div
+        style="
+          flex: 1 1 210px;
+          border: 1px solid #333;
+          padding: 16px 18px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, #111, #050505);
+        "
+      >
+        <h5
+          style="
+            font-size:14px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:#999;
+          "
+        >
+          Estructuras metálicas
+        </h5>
+        <p style="margin-top:6px; font-size:14px; text-transform:none;">
+          Plataformas, soportes, guardas y adecuaciones metálicas diseñadas para
+          resistir el trabajo diario.
+        </p>
       </div>
-    </section>
+    </div>
+  </div>
+
+  <div class="scroll-arrow">
+    <svg width="30px" height="20px">
+      <path
+        stroke="#ffffff"
+        fill="none"
+        stroke-width="2px"
+        d="M2.000,5.000 L15.000,18.000 L28.000,5.000"
+      ></path>
+    </svg>
+  </div>
+</section>
+
+
+
+
 
     <!-- SECTION C (VIDEO PROYECTOS) -->
     <section id="proyectos" class="section-c">
@@ -251,124 +259,107 @@
       </div>
     </section>
 
- 
-  <!-- SECTION D (INDUSTRIAS + CARRUSEL DE MARCAS) -->
-<section id="industrias" class="section-d" style="background-color:#050505;">
-  <div class="section-inner">
-    <h4>Experiencia comprobada</h4>
-    <h2>Industrias donde ya confiaron en nosotros</h2>
+    <!-- SECTION D (INDUSTRIAS + CARRUSEL DE MARCAS) -->
+    <section id="industrias" class="section-d" style="background-color:#050505;">
+      <div class="section-inner">
+        <h4>Experiencia comprobada</h4>
+        <h2>Industrias donde ya confiaron en nosotros</h2>
 
-    <p
-      style="
-        max-width: 580px;
-        margin-top: 12px;
-        text-transform:none;
-        font-size:16px;
-        line-height:1.6;
-      "
-    >
-      Hemos trabajado con empresas líderes en sectores como lácteos, alimentos,
-      empaques, logística y consumo masivo, aportando soluciones robustas y
-      duraderas.
-    </p>
+        <p
+          style="
+            max-width: 580px;
+            margin-top: 12px;
+            text-transform:none;
+            font-size:16px;
+            line-height:1.6;
+          "
+        >
+          Hemos trabajado con empresas líderes en sectores como lácteos, alimentos,
+          empaques, logística y consumo masivo, aportando soluciones robustas y
+          duraderas.
+        </p>
 
-    <ul
-      style="
-        margin-top:18px;
-        font-size:14px;
-        text-transform:none;
-        line-height:1.7;
-      "
-    >
-      <li>• Líneas de producción para <strong>DOS PINOS</strong></li>
-      <li>
-        • Proyectos de mantenimiento para <strong>UNILEVER</strong> y
-        <strong>SMURFIT KAPPA</strong>
-      </li>
-      <li>
-        • Adecuaciones y mejoras con empresas como <strong>TECH TOP</strong> y
-        aliados comerciales
-      </li>
-    </ul>
+        <ul
+          style="
+            margin-top:18px;
+            font-size:14px;
+            text-transform:none;
+            line-height:1.7;
+          "
+        >
+          <li>• Líneas de producción para <strong>DOS PINOS</strong></li>
+          <li>
+            • Proyectos de mantenimiento para <strong>UNILEVER</strong> y
+            <strong>SMURFIT KAPPA</strong>
+          </li>
+          <li>
+            • Adecuaciones y mejoras con empresas como <strong>TECH TOP</strong> y
+            aliados comerciales
+          </li>
+        </ul>
 
-            <!-- ===== CARRUSEL DE MARCAS / SOCIOS ===== -->
-    <div class="logos-section">
-      <h4 class="logos-subtitle">Nuestras alianzas</h4>
-      <h3 class="logos-title">Marcas que confían en MAKINTEC</h3>
+        <!-- CARRUSEL MARCAS -->
+        <div class="logos-section">
+          <h4 class="logos-subtitle">Nuestras alianzas</h4>
+          <h3 class="logos-title">Marcas que confían en MAKINTEC</h3>
 
-      <div class="logos-wrapper">
-        <button class="logos-nav prev" aria-label="Anterior marca">&#10094;</button>
+          <div class="logos-wrapper">
+            <button class="logos-nav prev" aria-label="Anterior marca">&#10094;</button>
 
-        <div class="logos-slider" id="logosSlider">
-          <div class="logos-track">
-            <!-- LOGOS (PRIMERA VUELTA) -->
-            <a href="#" class="logo-item">
-              <img src="img/marca1.png" alt="Marca 1" />
-            </a>
-            <a href="#" class="logo-item">
-              <img src="img/marca2.png" alt="Marca 2" />
-            </a>
-            <a href="#" class="logo-item">
-              <img src="img/marca3.png" alt="Marca 3" />
-            </a>
-            <a href="#" class="logo-item">
-              <img src="img/marca4.png" alt="Marca 4" />
-            </a>
-            <a href="#" class="logo-item">
-              <img src="img/marca5.png" alt="Marca 5" />
-            </a>
+            <div class="logos-slider" id="logosSlider">
+              <div class="logos-track">
+                <a href="#" class="logo-item">
+                  <img src="img/marca1.png" alt="Marca 1" />
+                </a>
+                <a href="#" class="logo-item">
+                  <img src="img/marca2.png" alt="Marca 2" />
+                </a>
+                <a href="#" class="logo-item">
+                  <img src="img/marca3.png" alt="Marca 3" />
+                </a>
+                <a href="#" class="logo-item">
+                  <img src="img/marca4.png" alt="Marca 4" />
+                </a>
+                <a href="#" class="logo-item">
+                  <img src="img/marca5.png" alt="Marca 5" />
+                </a>
 
-            <!-- DUPLICADO para efecto infinito -->
-            <a href="#" class="logo-item">
-              <img src="img/marca1.png" alt="Marca 1" />
-            </a>
-            <a href="#" class="logo-item">
-              <img src="img/marca2.png" alt="Marca 2" />
-            </a>
-            <a href="#" class="logo-item">
-              <img src="img/marca3.png" alt="Marca 3" />
-            </a>
-            <a href="#" class="logo-item">
-              <img src="img/marca4.png" alt="Marca 4" />
-            </a>
-            <a href="#" class="logo-item">
-              <img src="img/marca5.png" alt="Marca 5" />
-            </a>
+                <!-- duplicado para loop infinito -->
+                <a href="#" class="logo-item">
+                  <img src="img/marca1.png" alt="Marca 1" />
+                </a>
+                <a href="#" class="logo-item">
+                  <img src="img/marca2.png" alt="Marca 2" />
+                </a>
+                <a href="#" class="logo-item">
+                  <img src="img/marca3.png" alt="Marca 3" />
+                </a>
+                <a href="#" class="logo-item">
+                  <img src="img/marca4.png" alt="Marca 4" />
+                </a>
+                <a href="#" class="logo-item">
+                  <img src="img/marca5.png" alt="Marca 5" />
+                </a>
+              </div>
+            </div>
+
+            <button class="logos-nav next" aria-label="Siguiente marca">&#10095;</button>
           </div>
         </div>
-
-        <button class="logos-nav next" aria-label="Siguiente marca">&#10095;</button>
+        <!-- FIN CARRUSEL -->
       </div>
-    </div>
-    <!-- ===== FIN CARRUSEL ===== -->
-  </div>
 
-  <div class="scroll-arrow">
-    <svg width="30px" height="20px">
-      <path
-        stroke="#ffffff"
-        fill="none"
-        stroke-width="2px"
-        d="M2.000,5.000 L15.000,18.000 L28.000,5.000"
-      ></path>
-    </svg>
-  </div>
-</section>
-
-
-
-  <div class="scroll-arrow">
-    <svg width="30px" height="20px">
-      <path
-        stroke="#ffffff"
-        fill="none"
-        stroke-width="2px"
-        d="M2.000,5.000 L15.000,18.000 L28.000,5.000"
-      ></path>
-    </svg>
-  </div>
-</section>
-
+      <div class="scroll-arrow">
+        <svg width="30px" height="20px">
+          <path
+            stroke="#ffffff"
+            fill="none"
+            stroke-width="2px"
+            d="M2.000,5.000 L15.000,18.000 L28.000,5.000"
+          ></path>
+        </svg>
+      </div>
+    </section>
 
     <!-- SECTION E (POR QUÉ MAKINTEC, VIDEO DE FONDO) -->
     <section class="section-e">
@@ -439,7 +430,7 @@
       </div>
     </section>
 
-    <!-- SECTION F (CONTACTO CON FORMULARIO DE DISEÑO) -->
+    <!-- SECTION F (CONTACTO) -->
     <section id="contacto" class="section-f contact-section">
       <div class="contact-overlay"></div>
 
@@ -451,88 +442,85 @@
         </p>
 
         <form id="contact-form" class="contact-form" method="POST">
-  <!-- ALERTA ANIMADA -->
-  <div id="form-alert" class="form-alert" aria-live="polite"></div>
+          <div id="form-alert" class="form-alert" aria-live="polite"></div>
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="nombre">Nombre completo</label>
-      <input
-        type="text"
-        id="nombre"
-        name="Nombre completo"
-        placeholder="Ej: Carlos Rodríguez"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="empresa">Empresa</label>
-      <input
-        type="text"
-        id="empresa"
-        name="Empresa"
-        placeholder="Nombre de la empresa"
-      />
-    </div>
-  </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre completo</label>
+              <input
+                type="text"
+                id="nombre"
+                name="Nombre completo"
+                placeholder="Ej: Carlos Rodríguez"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="empresa">Empresa</label>
+              <input
+                type="text"
+                id="empresa"
+                name="Empresa"
+                placeholder="Nombre de la empresa"
+              />
+            </div>
+          </div>
 
-  <div class="form-row">
-    <div class="form-group">
-      <label for="correo">Correo electrónico</label>
-      <input
-        type="email"
-        id="correo"
-        name="Correo"
-        placeholder="correo@empresa.com"
-        required
-      />
-    </div>
-    <div class="form-group">
-      <label for="telefono">Teléfono</label>
-      <input
-        type="tel"
-        id="telefono"
-        name="Teléfono"
-        placeholder="+506 0000-0000"
-      />
-    </div>
-  </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="correo">Correo electrónico</label>
+              <input
+                type="email"
+                id="correo"
+                name="Correo"
+                placeholder="correo@empresa.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input
+                type="tel"
+                id="telefono"
+                name="Teléfono"
+                placeholder="+506 0000-0000"
+              />
+            </div>
+          </div>
 
-  <div class="form-row">
-    <div class="form-group full">
-      <label for="tipo">Tipo de proyecto</label>
-      <select id="tipo" name="Tipo de proyecto">
-        <option>Seleccione una opción</option>
-        <option>Mantenimiento / Reparación</option>
-        <option>Transportadores y bandas</option>
-        <option>Estructuras metálicas</option>
-        <option>Otro proyecto industrial</option>
-      </select>
-    </div>
-  </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="tipo">Tipo de proyecto</label>
+              <select id="tipo" name="Tipo de proyecto">
+                <option>Seleccione una opción</option>
+                <option>Mantenimiento / Reparación</option>
+                <option>Transportadores y bandas</option>
+                <option>Estructuras metálicas</option>
+                <option>Otro proyecto industrial</option>
+              </select>
+            </div>
+          </div>
 
-  <div class="form-row">
-    <div class="form-group full">
-      <label for="descripcion">Describa brevemente su necesidad</label>
-      <textarea
-        id="descripcion"
-        name="Descripción"
-        rows="4"
-        placeholder="Ej: Requerimos rediseñar un transportador y mejorar la seguridad en un área específica de la planta..."
-      ></textarea>
-    </div>
-  </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="descripcion">Describa brevemente su necesidad</label>
+              <textarea
+                id="descripcion"
+                name="Descripción"
+                rows="4"
+                placeholder="Ej: Requerimos rediseñar un transportador y mejorar la seguridad en un área específica de la planta..."
+              ></textarea>
+            </div>
+          </div>
 
-  <!-- Formspree spam honeypot -->
-  <input type="text" name="_honey" style="display:none">
+          <!-- Honeypot -->
+          <input type="text" name="_honey" style="display:none" />
 
-  <button type="submit" class="btn contact-btn">
-    <div class="hover"></div>
-    <span>Enviar consulta</span>
-  </button>
-</form>
-
-
+          <button type="submit" class="btn contact-btn">
+            <div class="hover"></div>
+            <span>Enviar consulta</span>
+          </button>
+        </form>
       </div>
     </section>
 

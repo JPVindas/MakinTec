@@ -78,7 +78,7 @@ bgVideos.forEach((vid) => {
 });
 
 // ============================
-// EFECTO: LOOP SUAVE VIDEO PORTADA
+// EFECTO: LOOP SUAVE VIDEO PORTADA (SECTION A)
 // ============================
 
 const heroVideo = document.querySelector('.section-a .bg-video');
@@ -108,6 +108,47 @@ if (heroVideo) {
 
         heroVideo.style.opacity = '1';
         restarting = false;
+      }, 400);
+    }
+  });
+}
+
+// ============================
+// VIDEO DE SERVICIOS (SECTION B - "Mi video-14.mp4")
+// ============================
+// En el HTML ya tienes:
+// <section id="servicios" class="section-b">
+//   <video class="bg-video" ...>
+//     <source src="img/Mi video-14.mp4" type="video/mp4" />
+//   </video>
+
+const servicesVideo = document.querySelector('.section-b .bg-video');
+
+if (servicesVideo) {
+  let restartingServices = false;
+
+  servicesVideo.addEventListener('timeupdate', () => {
+    if (!servicesVideo.duration) return;
+
+    const remaining = servicesVideo.duration - servicesVideo.currentTime;
+
+    if (!restartingServices && remaining <= 0.3) {
+      restartingServices = true;
+
+      servicesVideo.style.opacity = '0';
+
+      setTimeout(() => {
+        servicesVideo.currentTime = 0.01;
+
+        const playPromise = servicesVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            console.log('No se pudo reproducir el video al reiniciar (servicios).');
+          });
+        }
+
+        servicesVideo.style.opacity = '1';
+        restartingServices = false;
       }, 400);
     }
   });

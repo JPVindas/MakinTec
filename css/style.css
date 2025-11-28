@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;600;700&display=swap');
 
+/* RESET BÁSICO */
 *,
 *::before,
 *::after {
@@ -40,7 +41,7 @@ ul {
   text-transform: uppercase;
   height: 100px;
   padding: 0 30px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0)); /* mejor lectura sobre el video */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0));
 }
 
 /* Logo */
@@ -103,6 +104,7 @@ section {
   text-transform: uppercase;
 }
 
+/* Contenido principal dentro de cada sección (desktop/base) */
 .section-inner {
   position: absolute;
   bottom: 200px;
@@ -140,7 +142,116 @@ section {
   overflow: hidden;
 }
 
-.section-b { background-image: url('../img/section-b.webp'); }
+/* ================================
+   AJUSTES RESPONSIVE SECTION B
+   ================================ */
+
+/* Teléfonos grandes y tablets en vertical */
+@media (max-width: 768px) {
+
+  /* Altura y espacio general de la sección */
+  .section-b {
+    min-height: 100vh;
+    padding-top: 90px;   /* espacio bajo el header fijo */
+    padding-bottom: 70px;
+  }
+
+  /* Contenedor de texto y tarjetas */
+  .section-b .section-inner {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 0 18px;
+    text-align: left;
+  }
+
+  .section-b .section-inner h4 {
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    margin-bottom: 8px;
+  }
+
+  .section-b .section-inner h2 {
+    font-size: 26px;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .section-b .section-inner p {
+    font-size: 13px;
+    line-height: 1.7;
+    text-transform: none;
+  }
+
+  /* Contenedor de las tres tarjetas */
+  .section-b .section-inner > div {
+    margin-top: 20px !important;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 100%;
+  }
+
+  /* Tarjetas individuales */
+  .section-b .section-inner > div > div {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  /* Flecha de scroll un poco más arriba y más pequeña */
+  .section-b .scroll-arrow {
+    bottom: 24px;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  /* Video de fondo más “zoomeado” y a la derecha */
+  .bg-video-servicios {
+    width: 150vw;
+    height: 150vh;
+    object-position: 80% center;
+  }
+}
+
+/* Teléfonos pequeños */
+@media (max-width: 480px) {
+
+  .section-b .section-inner {
+    padding: 0 14px;
+  }
+
+  .section-b .section-inner h2 {
+    font-size: 22px;
+  }
+
+  .section-b .section-inner p {
+    font-size: 12px;
+  }
+
+  .section-b .section-inner > div > div {
+    padding: 12px 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .section-b .scroll-arrow {
+    bottom: 18px;
+  }
+}
+
+
+  /* las cards ocupan todo el ancho en columna */
+  .section-b .section-inner > div,
+  .section-b .section-inner > div > div {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* resto de secciones con fondo */
 .section-c { background-image: url('../img/section-c.webp'); }
 .section-d { background-image: url('../img/section-d.png'); }
 .section-e { background-image: url('../img/section-e.webp'); }
@@ -198,9 +309,8 @@ section {
 }
 
 /* ------------------------------------- */
-/* VIDEO FULLSCREEN OPTIMIZADO */
+/* VIDEO FULLSCREEN OPTIMIZADO (PORTADA, PROYECTOS, ETC.) */
 /* ------------------------------------- */
-
 .bg-video {
   position: absolute;
   top: 50%;
@@ -210,8 +320,9 @@ section {
   min-width: 100%;
   min-height: 100%;
   object-fit: cover;
+  object-position: 55% center;
   transform: translate(-50%, -50%);
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   background: #000;
   transition: opacity 0.1s ease-in-out;
@@ -225,54 +336,7 @@ section {
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
-  }
-}
-
-/* Teléfonos */
-@media (max-width: 600px) {
-  .bg-video {
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
-    min-width: 100vw;
-    object-fit: cover;
-  }
-
-  .section-inner {
-    position: relative;       /* Deja de ser absoluta para no cortarse */
-    bottom: auto;
-    left: auto;
-    right: auto;
-    max-width: 100%;
-    padding: 0 20px;
-    margin-top: 110px;        /* espacio para el header fijo */
-    text-align: left;
-  }
-
-  .section-inner h4 {
-    font-size: 14px;
-  }
-
-  .section-inner h2 {
-    font-size: 28px;
-  }
-}
-
-/* Pantallas ultra-altas 9:16 (vertical) */
-@media (max-aspect-ratio: 9/16) {
-  .bg-video {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-  }
-}
-
-/* Pantallas muy anchas 16:9 (horizontal) */
-@media (min-aspect-ratio: 16/9) {
-  .bg-video {
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
+    z-index: 0;
   }
 }
 
@@ -314,7 +378,7 @@ footer ul li.footer-logo {
 }
 
 footer ul li.footer-logo img {
-  height: 110px; /* ligeramente más grande para mejor legibilidad */
+  height: 110px;
   width: auto;
   display: block;
   line-height: 2.5;
@@ -665,16 +729,16 @@ footer ul li.footer-logo img {
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(6px);
-  background: rgba(255,255,255,0.04);   /* mejor contraste para logos */
+  background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.06);
 }
 
 /* IMÁGENES MÁS NÍTIDAS Y DEFINIDAS */
 .logo-item img {
-  max-height: 70px;                   /* MÁS GRANDES EN DESKTOP */
+  max-height: 70px;
   width: auto;
   opacity: 1;
-  filter: grayscale(25%) brightness(1.15) contrast(1.05); /* mejor legibilidad */
+  filter: grayscale(25%) brightness(1.15) contrast(1.05);
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: high-quality;
@@ -739,6 +803,7 @@ footer ul li.footer-logo img {
   .main-header {
     height: 80px;
     padding: 0 16px;
+    background: rgba(0,0,0,0.95);
   }
 
   section {
@@ -759,11 +824,11 @@ footer ul li.footer-logo img {
 
   .section-inner-center h3 { font-size: 75px; }
 
-  /* Sección de contacto en layout "normal" en móviles/tablet */
+  /* Sección de contacto en layout normal en móviles/tablet */
   .contact-section {
     height: auto;
     min-height: 100vh;
-    padding-top: 110px;              /* espacio para header */
+    padding-top: 110px;
     padding-bottom: 70px;
   }
 
@@ -784,45 +849,60 @@ footer ul li.footer-logo img {
     padding: 20px 18px 18px;
   }
 
-  /* Logos un poco más pequeños pero claros */
   .logo-item img {
     max-height: 56px;
   }
 }
 
-/* ----------- Mobile "medio" (teléfonos grandes) ----------- */
+/* ----------- Mobile medio (teléfonos grandes) ----------- */
 @media (max-width: 768px) {
 
   .main-header {
-    height: 75px;
+    height: 72px;
+    padding: 0 14px;
+    background: rgba(0,0,0,0.98);
   }
 
+  .logo { width: 150px; }
+
+  section {
+    min-height: 100vh;
+    padding-top: 90px;      /* deja espacio para el header fijo */
+    padding-bottom: 60px;
+  }
+
+  /* Contenido hero y de secciones más legible */
+}
+
+@media (max-width: 768px) {
+
   .section-inner {
-    margin-top: 100px;
-    left: 0;
+    position: relative;
     bottom: auto;
+    left: auto;
+    right: auto;
     max-width: 100%;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 0 18px;
+    text-align: left;
+  }
+
+  .section-inner h4 {
+    font-size: 13px;
+    margin-bottom: 6px;
   }
 
   .section-inner h2 {
-    font-size: 32px;
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 18px;
   }
 
-  .section-inner-center {
-    width: 90%;
-  }
-
-  .section-inner-center h3 {
-    font-size: 60px;
-  }
-
-  .stats {
-    flex-direction: column;
-  }
-
-  .stats div {
-    margin-bottom: 20px;
+  /* Botones ancho completo en móvil */
+  .btn {
+    width: 100%;
+    padding: 12px 20px;
+    text-align: center;
   }
 
   /* Logos carrusel más cómodo en móvil */
@@ -846,7 +926,7 @@ footer ul li.footer-logo img {
   }
 
   .logo-item img {
-    max-height: 44px;  /* más grandes que antes para que se vean mejor */
+    max-height: 44px;
   }
 
   .logos-nav {
@@ -863,20 +943,49 @@ footer ul li.footer-logo img {
   .logos-title {
     font-size: 22px;
   }
+
+  /* Video del hero más a la izquierda en móvil */
+  .section-a .bg-video {
+    object-position: 45% center;
+  }
+
+  /* Fondos de secciones desplazados un poco hacia la derecha también */
+  .section-b,
+  .section-c,
+  .section-d,
+  .section-e,
+  .section-f {
+    background-position: center right;
+  }
+
+  .section-inner-center {
+    width: 90%;
+  }
+
+  .section-inner-center h3 {
+    font-size: 60px;
+  }
+
+  .stats {
+    flex-direction: column;
+  }
+
+  .stats div {
+    margin-bottom: 20px;
+  }
 }
 
 /* ----------- Mobile pequeño (≤600px) ----------- */
 @media (max-width: 600px) {
 
-  .logo { width: 150px; }
+  .logo { width: 140px; }
 
   .section-inner {
-    margin-top: 95px;
-    padding: 0 18px;
+    padding: 0 16px;
   }
 
   .section-inner h4 {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .section-inner h2 {
@@ -902,14 +1011,42 @@ footer ul li.footer-logo img {
     margin-bottom: 20px;
   }
 
-  /* Logos bien visibles en pantallas muy pequeñas */
   .logo-item {
     padding: 10px 14px;
   }
 
   .logo-item img {
     max-height: 40px;
-    filter: grayscale(10%) brightness(1.2); /* aún más claros en pantallas pequeñas */
+    filter: grayscale(10%) brightness(1.2);
+  }
+
+  /* todavía un poco más a la izquierda */
+  .section-a .bg-video {
+    object-position: 40% center;
+  }
+}
+
+/* ----------- Mobile muy pequeño (≤480px) ----------- */
+@media (max-width: 480px) {
+
+  .section-inner h2 {
+    font-size: 24px;
+  }
+
+  .section-inner h4 {
+    font-size: 11px;
+  }
+
+  .contact-inner,
+  .contact-form {
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
@@ -924,11 +1061,9 @@ footer ul li.footer-logo img {
   font-size: 13px;
   line-height: 1.5;
   text-transform: none;
-
   border: 1px solid transparent;
   background: transparent;
   color: #fff;
-
   opacity: 0;
   transform: translateY(8px);
   pointer-events: none;
@@ -942,14 +1077,14 @@ footer ul li.footer-logo img {
 }
 
 .form-alert--success {
-  border-color: rgba(34, 197, 94, 0.6);            /* verde */
+  border-color: rgba(34, 197, 94, 0.6);
   background: radial-gradient(circle at top left,
               rgba(34, 197, 94, 0.18),
               rgba(0, 0, 0, 0.9));
 }
 
 .form-alert--error {
-  border-color: rgba(248, 113, 113, 0.7);          /* rojo */
+  border-color: rgba(248, 113, 113, 0.7);
   background: radial-gradient(circle at top left,
               rgba(248, 113, 113, 0.2),
               rgba(0, 0, 0, 0.9));
