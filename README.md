@@ -4,7 +4,7 @@
 
 [cite_start]Este repositorio contiene el Sitio Web Oficial de MAKINTEC [cite: 5][cite_start], desarrollado para presentar nuestra propuesta de valor y servicios especializados en el sector metalmecánico industrial[cite: 13, 15].
 
-### 💻 Stack Tecnológico
+### - 💻 Stack Tecnológico
 
 El proyecto está construido con las siguientes tecnologías:
 
