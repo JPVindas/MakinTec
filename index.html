@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Preload de videos -->
-    <link rel="preload" as="video" href="img/Mi video-8.mp4" type="video/mp4" />
-    <link rel="preload" as="video" href="img/Mi video-10.mp4" type="video/mp4" />
-    <link rel="preload" as="video" href="img/Mi video-11.mp4" type="video/mp4" />
-    <link rel="preload" as="video" href="img/Mi video-14.mp4" type="video/mp4" />
+    <!-- Preload de videos (nombres simplificados) -->
+    <link rel="preload" as="video" href="img/video1.mp4" type="video/mp4" />
+    <link rel="preload" as="video" href="img/video2.mp4" type="video/mp4" />
+    <link rel="preload" as="video" href="img/video3.mp4" type="video/mp4" />
+    <link rel="preload" as="video" href="img/video4.mp4" type="video/mp4" />
 
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js" defer></script>
@@ -68,7 +68,7 @@
         webkit-playsinline
         preload="auto"
       >
-        <source src="img/Mi video-8.mp4" type="video/mp4" />
+        <source src="img/video1.mp4" type="video/mp4" />
       </video>
 
       <div class="section-inner section-inner--hero">
@@ -92,141 +92,137 @@
       </div>
     </section>
 
-<!-- SECTION B (SERVICIOS CON VIDEO 14 DE FONDO) -->
-<section id="servicios" class="section-b">
-  <video
-    class="bg-video bg-video-servicios"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="metadata"
-  >
-    <!-- IMPORTANTE: la ruta debe coincidir EXACTO con la carpeta / nombre del archivo -->
-    <source src="img/Mi video-14.mp4" type="video/mp4" />
-    Tu navegador no soporta el elemento de video.
-  </video>
-
-  <div class="section-inner">
-    <h4>Soluciones que mantienen su planta en movimiento</h4>
-    <h2>Servicios especializados MAKINTEC</h2>
-
-    <p
-      style="
-        max-width: 620px;
-        margin-top: 14px;
-        text-transform: none;
-        font-size: 16px;
-        line-height: 1.6;
-      "
-    >
-      Combinamos <strong>metalmecánica industrial</strong>,
-      <strong>mecánica de precisión</strong> y
-      <strong>diseño de transportadores</strong> para que sus líneas
-      de producción trabajen con menos paros, más seguridad y mejor rendimiento.
-    </p>
-
-    <div
-      style="
-        margin-top: 24px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 18px;
-        max-width: 720px;
-      "
-    >
-      <div
-        style="
-          flex: 1 1 210px;
-          border: 1px solid #333;
-          padding: 16px 18px;
-          border-radius: 10px;
-          background: linear-gradient(135deg, #111, #050505);
-        "
+    <!-- SECTION B (SERVICIOS CON VIDEO 4 DE FONDO) -->
+    <section id="servicios" class="section-b">
+      <video
+        class="bg-video bg-video-servicios"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
       >
-        <h5
+        <!-- Ruta limpia y consistente -->
+        <source src="img/video4.mp4" type="video/mp4" />
+        Tu navegador no soporta el elemento de video.
+      </video>
+
+      <div class="section-inner">
+        <h4>Soluciones que mantienen su planta en movimiento</h4>
+        <h2>Servicios especializados MAKINTEC</h2>
+
+        <p
           style="
-            font-size:14px;
-            letter-spacing:1px;
-            text-transform:uppercase;
-            color:#999;
+            max-width: 620px;
+            margin-top: 14px;
+            text-transform: none;
+            font-size: 16px;
+            line-height: 1.6;
           "
         >
-          Mantenimiento y reparación
-        </h5>
-        <p style="margin-top:6px; font-size:14px; text-transform:none;">
-          Planes de mantenimiento, reparaciones críticas y atención en sitio para
-          minimizar tiempos de paro.
+          Combinamos <strong>metalmecánica industrial</strong>,
+          <strong>mecánica de precisión</strong> y
+          <strong>diseño de transportadores</strong> para que sus líneas
+          de producción trabajen con menos paros, más seguridad y mejor rendimiento.
         </p>
-      </div>
 
-      <div
-        style="
-          flex: 1 1 210px;
-          border: 1px solid #333;
-          padding: 16px 18px;
-          border-radius: 10px;
-          background: linear-gradient(135deg, #111, #050505);
-        "
-      >
-        <h5
+        <div
           style="
-            font-size:14px;
-            letter-spacing:1px;
-            text-transform:uppercase;
-            color:#999;
+            margin-top: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            max-width: 720px;
           "
         >
-          Transportadores a la medida
-        </h5>
-        <p style="margin-top:6px; font-size:14px; text-transform:none;">
-          Diseño, fabricación y mejora de bandas transportadoras según el flujo real
-          de su planta.
-        </p>
+          <div
+            style="
+              flex: 1 1 210px;
+              border: 1px solid #333;
+              padding: 16px 18px;
+              border-radius: 10px;
+              background: linear-gradient(135deg, #111, #050505);
+            "
+          >
+            <h5
+              style="
+                font-size:14px;
+                letter-spacing:1px;
+                text-transform:uppercase;
+                color:#999;
+              "
+            >
+              Mantenimiento y reparación
+            </h5>
+            <p style="margin-top:6px; font-size:14px; text-transform:none;">
+              Planes de mantenimiento, reparaciones críticas y atención en sitio para
+              minimizar tiempos de paro.
+            </p>
+          </div>
+
+          <div
+            style="
+              flex: 1 1 210px;
+              border: 1px solid #333;
+              padding: 16px 18px;
+              border-radius: 10px;
+              background: linear-gradient(135deg, #111, #050505);
+            "
+          >
+            <h5
+              style="
+                font-size:14px;
+                letter-spacing:1px;
+                text-transform:uppercase;
+                color:#999;
+              "
+            >
+              Transportadores a la medida
+            </h5>
+            <p style="margin-top:6px; font-size:14px; text-transform:none;">
+              Diseño, fabricación y mejora de bandas transportadoras según el flujo real
+              de su planta.
+            </p>
+          </div>
+
+          <div
+            style="
+              flex: 1 1 210px;
+              border: 1px solid #333;
+              padding: 16px 18px;
+              border-radius: 10px;
+              background: linear-gradient(135deg, #111, #050505);
+            "
+          >
+            <h5
+              style="
+                font-size:14px;
+                letter-spacing:1px;
+                text-transform:uppercase;
+                color:#999;
+              "
+            >
+              Estructuras metálicas
+            </h5>
+            <p style="margin-top:6px; font-size:14px; text-transform:none;">
+              Plataformas, soportes, guardas y adecuaciones metálicas diseñadas para
+              resistir el trabajo diario.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div
-        style="
-          flex: 1 1 210px;
-          border: 1px solid #333;
-          padding: 16px 18px;
-          border-radius: 10px;
-          background: linear-gradient(135deg, #111, #050505);
-        "
-      >
-        <h5
-          style="
-            font-size:14px;
-            letter-spacing:1px;
-            text-transform:uppercase;
-            color:#999;
-          "
-        >
-          Estructuras metálicas
-        </h5>
-        <p style="margin-top:6px; font-size:14px; text-transform:none;">
-          Plataformas, soportes, guardas y adecuaciones metálicas diseñadas para
-          resistir el trabajo diario.
-        </p>
+      <div class="scroll-arrow">
+        <svg width="30px" height="20px">
+          <path
+            stroke="#ffffff"
+            fill="none"
+            stroke-width="2px"
+            d="M2.000,5.000 L15.000,18.000 L28.000,5.000"
+          ></path>
+        </svg>
       </div>
-    </div>
-  </div>
-
-  <div class="scroll-arrow">
-    <svg width="30px" height="20px">
-      <path
-        stroke="#ffffff"
-        fill="none"
-        stroke-width="2px"
-        d="M2.000,5.000 L15.000,18.000 L28.000,5.000"
-      ></path>
-    </svg>
-  </div>
-</section>
-
-
-
-
+    </section>
 
     <!-- SECTION C (VIDEO PROYECTOS) -->
     <section id="proyectos" class="section-c">
@@ -239,7 +235,7 @@
         webkit-playsinline
         preload="auto"
       >
-        <source src="img/Mi video-10.mp4" type="video/mp4" />
+        <source src="img/video2.mp4" type="video/mp4" />
       </video>
 
       <div class="section-inner">
@@ -372,7 +368,7 @@
         webkit-playsinline
         preload="auto"
       >
-        <source src="img/Mi video-11.mp4" type="video/mp4" />
+        <source src="img/video3.mp4" type="video/mp4" />
       </video>
 
       <div class="section-inner">
