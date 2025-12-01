@@ -1,54 +1,77 @@
-# ⚙️ MAKINTEC: Soporte y Asesoría Industrial [cite: 5, 6]
+⚙️ MAKINTEC: Soporte y Asesoría Industrial
+✨ Sobre el Proyecto Web
 
-## ✨ Sobre el Proyecto Web
+Este repositorio contiene el Sitio Web Oficial de MAKINTEC, desarrollado para comunicar de forma clara nuestra propuesta de valor, capacidades técnicas y servicios especializados dentro del sector metalmecánico industrial.
 
-[cite_start]Este repositorio contiene el Sitio Web Oficial de MAKINTEC [cite: 5][cite_start], desarrollado para presentar nuestra propuesta de valor y servicios especializados en el sector metalmecánico industrial[cite: 13, 15].
+💻 Stack Tecnológico
 
-### - 💻 Stack Tecnológico
+El proyecto está construido con:
 
-El proyecto está construido con las siguientes tecnologías:
+HTML5 — Estructura y contenido semántico.
 
-* **HTML5:** Estructura y contenido semántico.
-* **CSS3:** Diseño y presentación visual.
-* **JavaScript (JS):** Interactividad y experiencia del usuario.
+CSS3 — Diseño, estilos avanzados y comportamiento responsive.
 
-## 🏭 La Empresa: MAKINTEC
+JavaScript — Interactividad, animaciones y mejoras de experiencia de usuario.
 
-[cite_start]MAKINTEC es un taller metalmecánico industrial especializado en la fabricación, mantenimiento y reparación de partes y estructuras metálicas[cite: 18]. [cite_start]Nuestra misión es asegurar mejoras operativas, buscando el balance entre **calidad y economía** [cite: 10, 12][cite_start], con la visión de ser referentes en la industria en el desarrollo de **soluciones metalmecánicas**[cite: 13].
+🏭 Sobre MAKINTEC
 
-[cite_start]Contamos con personal con más de **25 años de experiencia** en la industria [cite: 1, 19][cite_start], lo que respalda nuestro compromiso y calidad[cite: 4].
+MAKINTEC es un taller metalmecánico industrial especializado en la fabricación, mantenimiento y reparación de estructuras, piezas y equipos industriales.
 
-## 🛠️ Servicios Especializados
+Nuestra misión es impulsar mejoras operativas eficientes, ofreciendo un balance óptimo entre calidad, seguridad y economía.
+Nuestra visión es convertirnos en un referente regional en el desarrollo de soluciones metalmecánicas de alto desempeño.
 
-[cite_start]Somos expertos en la fabricación, mantenimiento y reparación de partes y estructuras metálicas[cite: 18]. Nuestros servicios clave incluyen:
+Contamos con un equipo técnico con más de 25 años de experiencia, lo que respalda nuestra calidad, precisión y cumplimiento en cada proyecto.
 
-* [cite_start]**Soporte Electromecánico:** Asesoría y mejora a maquinaria industrial[cite: 22].
-* [cite_start]**Metalmecánica de Precisión:** Fabricación de estructuras y reparación de maquinaria[cite: 25].
-* **Fabricación Técnica Avanzada:**
-    * [cite_start]Soldaduras y estructuras para procesos **sanitarios y alimenticios**[cite: 23].
-    * [cite_start]Fabricación en **acero inoxidable** (series 300, 400 y sanitarios en 316L)[cite: 24].
-    * [cite_start]Fabricación y reparación de **transportadores**[cite: 26].
+🛠️ Servicios Especializados
 
-### 🏥 Sectores de Enfoque
+Somos expertos en soluciones para plantas industriales, ofreciendo:
 
-[cite_start]Atendemos las necesidades de diversas industrias[cite: 18], incluyendo:
+✔️ Soporte Electromecánico
 
-* [cite_start]Alimenticio [cite: 18]
-* [cite_start]Manufactura [cite: 18]
-* [cite_start]Médica [cite: 18]
+Diagnóstico, mejora y acompañamiento técnico en maquinaria industrial para maximizar disponibilidad.
 
-## 🤝 Clientes y Referencias
+✔️ Metalmecánica de Precisión
 
-[cite_start]Nuestra trayectoria es respaldada por el servicio prestado a empresas líderes en sus respectivos sectores[cite: 27].
+Fabricación, reparación y adecuación de componentes y estructuras metálicas.
 
-* [cite_start]TECH TOP Motor Industries [cite: 28]
-* [cite_start]UNILEVER de Costa Rica [cite: 29, 30]
-* [cite_start]SMURFIT KAPPA [cite: 31, 32]
-* [cite_start]DOS PINOS [cite: 32]
-* [cite_start]TecniBandas [cite: 32]
+✔️ Fabricación Técnica Avanzada
 
----
+Soldaduras y estructuras para procesos sanitarios y alimenticios.
 
-### **ℹ️ Nota Importante**
+Fabricación en acero inoxidable (series 300, 400 y sanitarios 316L).
 
-Para información de contacto, por favor visite el sitio web publicado.
+Fabricación, mejora y reparación de transportadores industriales.
+
+🏥 Sectores de Enfoque
+
+Atendemos necesidades en diferentes industrias:
+
+Industria alimenticia
+
+Sector manufacturero
+
+Sector médico y farmacéutico
+
+🤝 Clientes y Referencias
+
+Hemos brindado soporte y soluciones a empresas líderes de la región, tales como:
+
+TECH TOP Motor Industries
+
+UNILEVER Costa Rica
+
+SMURFIT KAPPA
+
+DOS PINOS
+
+
+Nuestra experiencia con estas marcas nos permite ofrecer soluciones confiables, robustas y adaptadas a los estándares industriales más exigentes.
+
+🌐 Sitio Web
+
+Puedes visitar el sitio publicado en:
+👉 https://makin-tec.com/
+
+📞 Contacto
+
+Para consultas o cotizaciones, favor visitar el sitio web o utilizar los canales disponibles en la sección de contacto.
