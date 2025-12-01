@@ -9,11 +9,16 @@
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  max-width: 100%;
+}
+
 body {
   font-family: 'Familjen Grotesk', sans-serif;
   background: #000;
   color: #fff;
-  overflow-x: hidden; /* Evita scroll lateral en móviles */
+  overflow-x: hidden; /* Evita scroll lateral y el zoom raro en iPhone */
 }
 
 a {
@@ -97,7 +102,8 @@ ul {
 
 section {
   position: relative;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;          /* mejor que height fija en móviles */
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -110,6 +116,7 @@ section {
   bottom: 200px;
   left: 150px;
   max-width: 560px;
+  z-index: 1;                 /* por encima del video */
 }
 
 .section-inner h4 {
@@ -142,120 +149,65 @@ section {
   overflow: hidden;
 }
 
-/* ================================
-   AJUSTES RESPONSIVE SECTION B
-   ================================ */
-
-/* Teléfonos grandes y tablets en vertical */
-@media (max-width: 768px) {
-
-  /* Altura y espacio general de la sección */
-  .section-b {
-    min-height: 100vh;
-    padding-top: 90px;   /* espacio bajo el header fijo */
-    padding-bottom: 70px;
-  }
-
-  /* Contenedor de texto y tarjetas */
-  .section-b .section-inner {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    max-width: 430px;
-    margin: 0 auto;
-    padding: 0 18px;
-    text-align: left;
-  }
-
-  .section-b .section-inner h4 {
-    font-size: 12px;
-    letter-spacing: 1.6px;
-    margin-bottom: 8px;
-  }
-
-  .section-b .section-inner h2 {
-    font-size: 26px;
-    line-height: 1.25;
-    margin-bottom: 16px;
-  }
-
-  .section-b .section-inner p {
-    font-size: 13px;
-    line-height: 1.7;
-    text-transform: none;
-  }
-
-  /* Contenedor de las tres tarjetas */
-  .section-b .section-inner > div {
-    margin-top: 20px !important;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    max-width: 100%;
-  }
-
-  /* Tarjetas individuales */
-  .section-b .section-inner > div > div {
-    width: 100%;
-    max-width: 100%;
-    padding: 14px 16px !important;
-    border-radius: 14px !important;
-  }
-
-  /* Flecha de scroll un poco más arriba y más pequeña */
-  .section-b .scroll-arrow {
-    bottom: 24px;
-    transform: translateX(-50%) scale(0.85);
-  }
-
-  /* Video de fondo más “zoomeado” y a la derecha */
-  .bg-video-servicios {
-    width: 150vw;
-    height: 150vh;
-    object-position: 80% center;
-  }
+/* SECTION B: video + mejor lectura y sin overflow */
+.section-b {
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  /* si tienes una imagen de respaldo úsala aquí, NO el mp4 */
+  /* background-image: url('../img/section-b-fallback.jpg'); */
 }
 
-/* Teléfonos pequeños */
-@media (max-width: 480px) {
-
-  .section-b .section-inner {
-    padding: 0 14px;
-  }
-
-  .section-b .section-inner h2 {
-    font-size: 22px;
-  }
-
-  .section-b .section-inner p {
-    font-size: 12px;
-  }
-
-  .section-b .section-inner > div > div {
-    padding: 12px 14px !important;
-    border-radius: 12px !important;
-  }
-
-  .section-b .scroll-arrow {
-    bottom: 18px;
-  }
+/* Capa oscura muy suave para que el texto sea legible */
+.section-b::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at left, rgba(0,0,0,0.72), transparent 55%);
+  z-index: 0;
 }
 
-
-  /* las cards ocupan todo el ancho en columna */
-  .section-b .section-inner > div,
-  .section-b .section-inner > div > div {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-
-/* resto de secciones con fondo */
+/* Resto de secciones con imagen fija */
 .section-c { background-image: url('../img/section-c.webp'); }
 .section-d { background-image: url('../img/section-d.png'); }
 .section-e { background-image: url('../img/section-e.webp'); }
 .section-f { background-image: url('../img/section-f.jpg'); }
+
+/* ------------------------------------- */
+/* VIDEO FULLSCREEN OPTIMIZADO           */
+/* ------------------------------------- */
+
+/* Regla base para CUALQUIER video de fondo */
+.bg-video,
+.bg-video-servicios {
+  position: absolute;
+  inset: 0;              /* top:0, right:0, bottom:0, left:0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% center;
+  z-index: 0;
+  pointer-events: none;
+  background: #000;
+  transition: opacity 0.1s ease-in-out;
+}
+
+/* En servicios enfocamos más a la derecha */
+.bg-video-servicios {
+  object-position: 70% center;
+}
+
+/* Fix especial Safari/iPhone */
+@supports (-webkit-touch-callout: none) {
+  .bg-video,
+  .bg-video-servicios {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
+}
 
 /* ------------------------------------- */
 /* BUTTON */
@@ -306,38 +258,7 @@ section {
   left: 50%;
   transform: translateX(-50%);
   animation: fadeBounce 5s infinite;
-}
-
-/* ------------------------------------- */
-/* VIDEO FULLSCREEN OPTIMIZADO (PORTADA, PROYECTOS, ETC.) */
-/* ------------------------------------- */
-.bg-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 100vh;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  object-position: 55% center;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
-  background: #000;
-  transition: opacity 0.1s ease-in-out;
-}
-
-/* Fix especial Safari/iPhone */
-@supports (-webkit-touch-callout: none) {
-  .bg-video {
-    height: 100%;
-    width: auto;
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
+  z-index: 2;
 }
 
 /* ------------------------------------- */
@@ -807,7 +728,6 @@ footer ul li.footer-logo img {
   }
 
   section {
-    height: auto;
     min-height: 100vh;
     padding-bottom: 60px;
   }
@@ -824,7 +744,6 @@ footer ul li.footer-logo img {
 
   .section-inner-center h3 { font-size: 75px; }
 
-  /* Sección de contacto en layout normal en móviles/tablet */
   .contact-section {
     height: auto;
     min-height: 100vh;
@@ -854,7 +773,7 @@ footer ul li.footer-logo img {
   }
 }
 
-/* ----------- Mobile medio (teléfonos grandes) ----------- */
+/* ----------- Mobile medio (≤768px) ----------- */
 @media (max-width: 768px) {
 
   .main-header {
@@ -867,15 +786,11 @@ footer ul li.footer-logo img {
 
   section {
     min-height: 100vh;
-    padding-top: 90px;      /* deja espacio para el header fijo */
+    padding-top: 90px;
     padding-bottom: 60px;
   }
 
-  /* Contenido hero y de secciones más legible */
-}
-
-@media (max-width: 768px) {
-
+  /* Contenido hero y secciones más legible */
   .section-inner {
     position: relative;
     bottom: auto;
@@ -898,14 +813,41 @@ footer ul li.footer-logo img {
     margin-bottom: 18px;
   }
 
-  /* Botones ancho completo en móvil */
   .btn {
     width: 100%;
     padding: 12px 20px;
     text-align: center;
   }
 
-  /* Logos carrusel más cómodo en móvil */
+  /* Video del hero reajustado */
+  .section-a .bg-video {
+    object-position: 45% center;
+  }
+
+  .section-b,
+  .section-c,
+  .section-d,
+  .section-e,
+  .section-f {
+    background-position: center right;
+  }
+
+  .section-inner-center {
+    width: 90%;
+  }
+
+  .section-inner-center h3 {
+    font-size: 60px;
+  }
+
+  .stats {
+    flex-direction: column;
+  }
+
+  .stats div {
+    margin-bottom: 20px;
+  }
+
   .logos-wrapper {
     flex-direction: column;
     align-items: flex-start;
@@ -942,36 +884,6 @@ footer ul li.footer-logo img {
 
   .logos-title {
     font-size: 22px;
-  }
-
-  /* Video del hero más a la izquierda en móvil */
-  .section-a .bg-video {
-    object-position: 45% center;
-  }
-
-  /* Fondos de secciones desplazados un poco hacia la derecha también */
-  .section-b,
-  .section-c,
-  .section-d,
-  .section-e,
-  .section-f {
-    background-position: center right;
-  }
-
-  .section-inner-center {
-    width: 90%;
-  }
-
-  .section-inner-center h3 {
-    font-size: 60px;
-  }
-
-  .stats {
-    flex-direction: column;
-  }
-
-  .stats div {
-    margin-bottom: 20px;
   }
 }
 
@@ -1020,7 +932,6 @@ footer ul li.footer-logo img {
     filter: grayscale(10%) brightness(1.2);
   }
 
-  /* todavía un poco más a la izquierda */
   .section-a .bg-video {
     object-position: 40% center;
   }
