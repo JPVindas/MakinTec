@@ -118,7 +118,7 @@ if (heroVideo) {
 // ============================
 // En el HTML ya tienes:
 // <section id="servicios" class="section-b">
-//   <video class="bg-video" ...>
+//   <video class="bg-video bg-video-servicios" ...>
 //     <source src="img/Mi video-14.mp4" type="video/mp4" />
 //   </video>
 
@@ -152,6 +152,37 @@ if (servicesVideo) {
       }, 400);
     }
   });
+
+  // ------------------------------------------------
+  // EFECTO EXTRA: PANE0 IZQUIERDA → DERECHA SUAVE
+  // ------------------------------------------------
+  // Va de 10% (izquierda) a 90% (derecha) y vuelve.
+
+  let panPos = 10;   // empezamos mirando más a la izquierda
+  let panDir = 1;    // 1 = hacia la derecha, -1 = hacia la izquierda
+
+  const startPanEffect = () => {
+    const pan = () => {
+      // velocidad del movimiento (sube/baja este valor)
+      panPos += panDir * 0.05;
+
+      // límites del recorrido (10% ↔ 90%)
+      if (panPos >= 90) panDir = -1;   // cuando llega a la derecha, regresa
+      if (panPos <= 10) panDir = 1;    // cuando llega a la izquierda, vuelve a ir a la derecha
+
+      servicesVideo.style.objectPosition = `${panPos}% center`;
+      requestAnimationFrame(pan);
+    };
+
+    requestAnimationFrame(pan);
+  };
+
+  // Iniciar el paneo cuando el video tenga metadata
+  if (servicesVideo.readyState >= 1) {
+    startPanEffect();
+  } else {
+    servicesVideo.addEventListener('loadedmetadata', startPanEffect, { once: true });
+  }
 }
 
 // ==========================================
@@ -174,7 +205,7 @@ if (slider && track) {
 
   // 2) VARIABLES
   let position = 0;
-  const STEP = 180; 
+  const STEP = 180;
   const TRACK_WIDTH = track.scrollWidth / 2; // mitad = set original
 
   // 3) FUNCIÓN PARA MOVER CON LOOP
@@ -206,9 +237,8 @@ if (slider && track) {
   }
 
   // Botones
-  prevBtn.addEventListener("click", () => move(1));
-  nextBtn.addEventListener("click", () => move(-1));
-
+  if (prevBtn) prevBtn.addEventListener("click", () => move(1));
+  if (nextBtn) nextBtn.addEventListener("click", () => move(-1));
 }
 
 document.addEventListener("DOMContentLoaded", () => {

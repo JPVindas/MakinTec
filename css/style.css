@@ -9,7 +9,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   max-width: 100%;
 }
@@ -18,7 +19,17 @@ body {
   font-family: 'Familjen Grotesk', sans-serif;
   background: #000;
   color: #fff;
-  overflow-x: hidden; /* Evita scroll lateral y el zoom raro en iPhone */
+  overflow-x: hidden;                 /* Evita scroll lateral */
+  -webkit-text-size-adjust: 100%;     /* Evita zoom raro en iPhone */
+  overscroll-behavior-x: none;
+}
+
+/* Asegura que imágenes y videos nunca rompan el layout */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 a {
@@ -39,14 +50,15 @@ ul {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 3;
+  z-index: 30;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-transform: uppercase;
   height: 100px;
   padding: 0 30px;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  padding-top: calc(env(safe-area-inset-top, 0px) + 8px); /* notch iPhone */
 }
 
 /* Logo */
@@ -102,21 +114,23 @@ ul {
 
 section {
   position: relative;
-  width: 100%;
-  min-height: 100vh;          /* mejor que height fija en móviles */
+  width: 100vw;              /* fuerza ancho completo */
+  max-width: 100vw;
+  min-height: 100vh;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   text-transform: uppercase;
+  overflow: hidden;          /* evita que algo se salga lateralmente */
 }
 
-/* Contenido principal dentro de cada sección (desktop/base) */
+/* Contenido principal desktop */
 .section-inner {
   position: absolute;
   bottom: 200px;
   left: 150px;
   max-width: 560px;
-  z-index: 1;                 /* por encima del video */
+  z-index: 2;                 /* por encima del video y overlay */
 }
 
 .section-inner h4 {
@@ -149,25 +163,22 @@ section {
   overflow: hidden;
 }
 
-/* SECTION B: video + mejor lectura y sin overflow */
+/* SECTION B: Servicios con video */
 .section-b {
   position: relative;
   overflow: hidden;
   background-color: #000;
-  /* si tienes una imagen de respaldo úsala aquí, NO el mp4 */
-  /* background-image: url('../img/section-b-fallback.jpg'); */
 }
 
-/* Capa oscura muy suave para que el texto sea legible */
+/* Capa oscura suave para lectura del texto */
 .section-b::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at left, rgba(0,0,0,0.72), transparent 55%);
-  z-index: 0;
+  background: radial-gradient(circle at left, rgba(0, 0, 0, 0.78), transparent 60%);
+  z-index: 1;
 }
 
-/* Resto de secciones con imagen fija */
 .section-c { background-image: url('../img/section-c.webp'); }
 .section-d { background-image: url('../img/section-d.png'); }
 .section-e { background-image: url('../img/section-e.webp'); }
@@ -177,14 +188,13 @@ section {
 /* VIDEO FULLSCREEN OPTIMIZADO           */
 /* ------------------------------------- */
 
-/* Regla base para CUALQUIER video de fondo */
 .bg-video,
 .bg-video-servicios {
   position: absolute;
-  inset: 0;              /* top:0, right:0, bottom:0, left:0 */
+  inset: 0;             /* top/right/bottom/left = 0 */
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;    /* Hace que el 1920x1080 se adapte bien */
   object-position: 55% center;
   z-index: 0;
   pointer-events: none;
@@ -192,10 +202,11 @@ section {
   transition: opacity 0.1s ease-in-out;
 }
 
-/* En servicios enfocamos más a la derecha */
+/* En servicios enfocamos más a la derecha (logo naranja) en desktop */
 .bg-video-servicios {
-  object-position: 70% center;
+  object-position: 88% center !important;
 }
+
 
 /* Fix especial Safari/iPhone */
 @supports (-webkit-touch-callout: none) {
@@ -225,7 +236,7 @@ section {
   text-transform: uppercase;
   font-weight: bold;
   overflow: hidden;
-  z-index: 2;
+  z-index: 3;
 }
 
 .btn:hover span {
@@ -254,11 +265,11 @@ section {
 
 .scroll-arrow {
   position: absolute;
-  bottom: 50px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   animation: fadeBounce 5s infinite;
-  z-index: 2;
+  z-index: 3;
 }
 
 /* ------------------------------------- */
@@ -268,6 +279,7 @@ section {
 footer {
   position: relative;
   padding: 55px 0;
+  width: 100vw;
 }
 
 footer ul {
@@ -311,9 +323,9 @@ footer ul li.footer-logo img {
 
 .hamburger {
   position: fixed;
-  top: 34px;
+  top: calc(34px + env(safe-area-inset-top, 0px));
   right: 20px;
-  z-index: 10;
+  z-index: 40;
   cursor: pointer;
   width: 24px;
   height: 24px;
@@ -347,10 +359,10 @@ footer ul li.footer-logo img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 35;
 }
 
 .stop-scrolling { overflow: hidden; }
@@ -361,15 +373,16 @@ footer ul li.footer-logo img {
   position: fixed;
   top: 0;
   right: 0;
-  width: 350px;
-  height: 100%;
+  width: min(350px, 80vw);
+  height: 100vh;
   background: #000;
-  z-index: 4;
+  z-index: 36;
   display: flex;
   align-items: center;
   justify-content: center;
   transform: translateX(100%);
-  transition: transform 0.6s cubic-bezier(0.19,1,0.22,1);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 .show-menu { transform: translateX(0); }
@@ -377,8 +390,8 @@ footer ul li.footer-logo img {
 .mobile-main-menu ul {
   display: flex;
   flex-direction: column;
-  align-items: end;
-  padding: 50px;
+  align-items: flex-end;
+  padding: 50px 30px;
   width: 100%;
 }
 
@@ -406,7 +419,7 @@ footer ul li.footer-logo img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   text-transform: uppercase;
   text-align: center;
   width: 80%;
@@ -452,7 +465,7 @@ footer ul li.footer-logo img {
 }
 
 @keyframes fadeBounce {
-  0%,20%,50%,80%,100% {
+  0%, 20%, 50%, 80%, 100% {
     opacity: 0;
     transform: translateY(-20px);
   }
@@ -476,8 +489,9 @@ footer ul li.footer-logo img {
 .contact-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 55%),
-              linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.95));
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 55%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
   z-index: -1;
 }
 
@@ -584,7 +598,7 @@ footer ul li.footer-logo img {
   color: #000;
 }
 
-/* Footer logo */
+/* Footer logo pequeño */
 .footer-logo {
   margin-right: 30px;
 }
@@ -650,8 +664,8 @@ footer ul li.footer-logo img {
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(6px);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* IMÁGENES MÁS NÍTIDAS Y DEFINIDAS */
@@ -676,12 +690,12 @@ footer ul li.footer-logo img {
 .logo-item:hover {
   background: rgba(255, 255, 255, 0.09);
   transform: scale(1.08);
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 /* Botones de navegación */
 .logos-nav {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid #333;
   color: #fff;
   width: 38px;
@@ -696,7 +710,7 @@ footer ul li.footer-logo img {
 }
 
 .logos-nav:hover {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   border-color: #666;
   transform: translateY(-2px);
 }
@@ -724,7 +738,7 @@ footer ul li.footer-logo img {
   .main-header {
     height: 80px;
     padding: 0 16px;
-    background: rgba(0,0,0,0.95);
+    background: rgba(0, 0, 0, 0.95);
   }
 
   section {
@@ -779,14 +793,14 @@ footer ul li.footer-logo img {
   .main-header {
     height: 72px;
     padding: 0 14px;
-    background: rgba(0,0,0,0.98);
+    background: rgba(0, 0, 0, 0.98);
   }
 
   .logo { width: 150px; }
 
   section {
     min-height: 100vh;
-    padding-top: 90px;
+    padding-top: calc(90px + env(safe-area-inset-top, 0px));
     padding-bottom: 60px;
   }
 
@@ -821,8 +835,11 @@ footer ul li.footer-logo img {
 
   /* Video del hero reajustado */
   .section-a .bg-video {
-    object-position: 45% center;
+    object-position: 55% center;
   }
+
+  /* Video servicios: enfoca más el engrane a la derecha en móvil */
+  .section-b .bg-video-servicios { object-position: 82% center; }
 
   .section-b,
   .section-c,
@@ -934,6 +951,11 @@ footer ul li.footer-logo img {
 
   .section-a .bg-video {
     object-position: 40% center;
+  }
+
+  /* Afinamos todavía más en móvil pequeño la posición del video de servicios */
+  .section-b .bg-video-servicios {
+    object-position: 80% center;
   }
 }
 
