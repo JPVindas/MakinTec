@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-CR">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="MAKINTEC - Soporte y Asesoría Industrial. Metalmecánica, mantenimiento, transportadores y estructuras metálicas para la industria."
+    />
 
-    <!-- Preload de videos (nombres simplificados) -->
+    <!-- Preload de videos usados -->
     <link rel="preload" as="video" href="img/video1.mp4" type="video/mp4" />
     <link rel="preload" as="video" href="img/video2.mp4" type="video/mp4" />
     <link rel="preload" as="video" href="img/video3.mp4" type="video/mp4" />
-    <link rel="preload" as="video" href="img/video4.mp4" type="video/mp4" />
 
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js" defer></script>
 
-    <title>MAKINTEC</title>
+    <title>MAKINTEC | Soporte y Asesoría Industrial</title>
   </head>
 
   <body>
     <div id="overlay"></div>
 
     <!-- MOBILE MENU -->
-    <div id="mobile-menu" class="mobile-main-menu">
+    <nav id="mobile-menu" class="mobile-main-menu" aria-label="Menú móvil">
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
@@ -29,17 +35,17 @@
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
-    </div>
+    </nav>
 
     <!-- HEADER -->
     <header class="main-header">
       <div class="logo">
-        <a href="#inicio">
-          <img src="img/logo.png" alt="MAKINTEC" />
+        <a href="#inicio" aria-label="Ir al inicio">
+          <img src="img/logo.png" alt="MAKINTEC" loading="lazy" />
         </a>
       </div>
 
-      <nav class="desktop-main-menu">
+      <nav class="desktop-main-menu" aria-label="Menú principal">
         <ul>
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#servicios">Servicios</a></li>
@@ -51,16 +57,23 @@
     </header>
 
     <!-- HAMBURGER -->
-    <button id="menu-btn" class="hamburger" type="button">
+    <button
+      id="menu-btn"
+      class="hamburger"
+      type="button"
+      aria-label="Abrir menú de navegación"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
       <span class="hamburger-top"></span>
       <span class="hamburger-middle"></span>
       <span class="hamburger-bottom"></span>
     </button>
 
     <!-- SECTION A (VIDEO FULLSCREEN PORTADA) -->
-    <section id="inicio" class="section-a">
+    <section id="inicio" class="section-a" aria-label="Portada MAKINTEC">
       <video
-        class="bg-video"
+        class="bg-video hero-video"
         autoplay
         muted
         loop
@@ -81,7 +94,7 @@
       </div>
 
       <div class="scroll-arrow">
-        <svg width="30px" height="20px">
+        <svg width="30px" height="20px" aria-hidden="true">
           <path
             stroke="#ffffff"
             fill="none"
@@ -92,128 +105,79 @@
       </div>
     </section>
 
-    <!-- SECTION B (SERVICIOS CON VIDEO 4 DE FONDO) -->
-    <section id="servicios" class="section-b">
-      <video
-        class="bg-video bg-video-servicios"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-      >
-        <!-- Ruta limpia y consistente -->
-        <source src="img/video4.mp4" type="video/mp4" />
-        Tu navegador no soporta el elemento de video.
-      </video>
+    <!-- SECTION B (SERVICIOS CON ANIMACIÓN TIPO SPLINE) -->
+    <section
+      id="servicios"
+      class="section-b"
+      aria-label="Servicios especializados MAKINTEC"
+    >
+      <!-- Capa de glow/gradiente que se mueve con el mouse -->
+      <div class="services-anim-layer"></div>
+      <div class="section-b-overlay"></div>
 
-      <div class="section-inner">
+      <!-- Núcleo / órbitas tipo Spline -->
+      <div class="services-orbit services-orbit--outer"></div>
+      <div class="services-orbit services-orbit--inner"></div>
+
+      <!-- Líneas de energía -->
+      <div class="services-line services-line--1"></div>
+      <div class="services-line services-line--2"></div>
+      <div class="services-line services-line--3"></div>
+
+      <!-- Puntos que parpadean -->
+      <div class="services-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- Contenido -->
+      <div class="section-inner section-inner--services">
         <h4>Soluciones que mantienen su planta en movimiento</h4>
         <h2>Servicios especializados MAKINTEC</h2>
 
-        <p
-          style="
-            max-width: 620px;
-            margin-top: 14px;
-            text-transform: none;
-            font-size: 16px;
-            line-height: 1.6;
-          "
-        >
+        <p class="section-paragraph section-paragraph--wide">
           Combinamos <strong>metalmecánica industrial</strong>,
           <strong>mecánica de precisión</strong> y
-          <strong>diseño de transportadores</strong> para que sus líneas
-          de producción trabajen con menos paros, más seguridad y mejor rendimiento.
+          <strong>diseño de transportadores</strong> para que sus líneas de producción
+          trabajen con menos paros, más seguridad y mejor rendimiento.
         </p>
 
-        <div
-          style="
-            margin-top: 24px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            max-width: 720px;
-          "
-        >
-          <div
-            style="
-              flex: 1 1 210px;
-              border: 1px solid #333;
-              padding: 16px 18px;
-              border-radius: 10px;
-              background: linear-gradient(135deg, #111, #050505);
-            "
-          >
-            <h5
-              style="
-                font-size:14px;
-                letter-spacing:1px;
-                text-transform:uppercase;
-                color:#999;
-              "
-            >
-              Mantenimiento y reparación
-            </h5>
-            <p style="margin-top:6px; font-size:14px; text-transform:none;">
+        <div class="services-tags">
+          <span>Metalmecánica</span>
+          <span>Mantenimiento crítico</span>
+          <span>Transportadores a la medida</span>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <h5>Mantenimiento y reparación</h5>
+            <p>
               Planes de mantenimiento, reparaciones críticas y atención en sitio para
               minimizar tiempos de paro.
             </p>
-          </div>
+          </article>
 
-          <div
-            style="
-              flex: 1 1 210px;
-              border: 1px solid #333;
-              padding: 16px 18px;
-              border-radius: 10px;
-              background: linear-gradient(135deg, #111, #050505);
-            "
-          >
-            <h5
-              style="
-                font-size:14px;
-                letter-spacing:1px;
-                text-transform:uppercase;
-                color:#999;
-              "
-            >
-              Transportadores a la medida
-            </h5>
-            <p style="margin-top:6px; font-size:14px; text-transform:none;">
+          <article class="service-card">
+            <h5>Transportadores a la medida</h5>
+            <p>
               Diseño, fabricación y mejora de bandas transportadoras según el flujo real
               de su planta.
             </p>
-          </div>
+          </article>
 
-          <div
-            style="
-              flex: 1 1 210px;
-              border: 1px solid #333;
-              padding: 16px 18px;
-              border-radius: 10px;
-              background: linear-gradient(135deg, #111, #050505);
-            "
-          >
-            <h5
-              style="
-                font-size:14px;
-                letter-spacing:1px;
-                text-transform:uppercase;
-                color:#999;
-              "
-            >
-              Estructuras metálicas
-            </h5>
-            <p style="margin-top:6px; font-size:14px; text-transform:none;">
+          <article class="service-card">
+            <h5>Estructuras metálicas</h5>
+            <p>
               Plataformas, soportes, guardas y adecuaciones metálicas diseñadas para
               resistir el trabajo diario.
             </p>
-          </div>
+          </article>
         </div>
       </div>
 
       <div class="scroll-arrow">
-        <svg width="30px" height="20px">
+        <svg width="30px" height="20px" aria-hidden="true">
           <path
             stroke="#ffffff"
             fill="none"
@@ -225,7 +189,11 @@
     </section>
 
     <!-- SECTION C (VIDEO PROYECTOS) -->
-    <section id="proyectos" class="section-c">
+    <section
+      id="proyectos"
+      class="section-c"
+      aria-label="Proyectos y procesos en acción"
+    >
       <video
         class="bg-video"
         autoplay
@@ -244,7 +212,7 @@
       </div>
 
       <div class="scroll-arrow">
-        <svg width="30px" height="20px">
+        <svg width="30px" height="20px" aria-hidden="true">
           <path
             stroke="#ffffff"
             fill="none"
@@ -256,33 +224,23 @@
     </section>
 
     <!-- SECTION D (INDUSTRIAS + CARRUSEL DE MARCAS) -->
-    <section id="industrias" class="section-d" style="background-color:#050505;">
+    <section
+      id="industrias"
+      class="section-d"
+      style="background-color:#050505;"
+      aria-label="Industrias donde trabajamos"
+    >
       <div class="section-inner">
         <h4>Experiencia comprobada</h4>
         <h2>Industrias donde ya confiaron en nosotros</h2>
 
-        <p
-          style="
-            max-width: 580px;
-            margin-top: 12px;
-            text-transform:none;
-            font-size:16px;
-            line-height:1.6;
-          "
-        >
+        <p class="section-paragraph">
           Hemos trabajado con empresas líderes en sectores como lácteos, alimentos,
           empaques, logística y consumo masivo, aportando soluciones robustas y
           duraderas.
         </p>
 
-        <ul
-          style="
-            margin-top:18px;
-            font-size:14px;
-            text-transform:none;
-            line-height:1.7;
-          "
-        >
+        <ul class="industries-list">
           <li>• Líneas de producción para <strong>DOS PINOS</strong></li>
           <li>
             • Proyectos de mantenimiento para <strong>UNILEVER</strong> y
@@ -300,53 +258,57 @@
           <h3 class="logos-title">Marcas que confían en MAKINTEC</h3>
 
           <div class="logos-wrapper">
-            <button class="logos-nav prev" aria-label="Anterior marca">&#10094;</button>
+            <button class="logos-nav prev" aria-label="Anterior marca">
+              &#10094;
+            </button>
 
             <div class="logos-slider" id="logosSlider">
               <div class="logos-track">
                 <a href="#" class="logo-item">
-                  <img src="img/marca1.png" alt="Marca 1" />
+                  <img src="img/marca1.png" alt="Marca 1" loading="lazy" />
                 </a>
                 <a href="#" class="logo-item">
-                  <img src="img/marca2.png" alt="Marca 2" />
+                  <img src="img/marca2.png" alt="Marca 2" loading="lazy" />
                 </a>
                 <a href="#" class="logo-item">
-                  <img src="img/marca3.png" alt="Marca 3" />
+                  <img src="img/marca3.png" alt="Marca 3" loading="lazy" />
                 </a>
                 <a href="#" class="logo-item">
-                  <img src="img/marca4.png" alt="Marca 4" />
+                  <img src="img/marca4.png" alt="Marca 4" loading="lazy" />
                 </a>
                 <a href="#" class="logo-item">
-                  <img src="img/marca5.png" alt="Marca 5" />
+                  <img src="img/marca5.png" alt="Marca 5" loading="lazy" />
                 </a>
 
                 <!-- duplicado para loop infinito -->
                 <a href="#" class="logo-item">
-                  <img src="img/marca1.png" alt="Marca 1" />
+                  <img src="img/marca1.png" alt="Marca 1" loading="lazy" />
                 </a>
                 <a href="#" class="logo-item">
-                  <img src="img/marca2.png" alt="Marca 2" />
+                  <img src="img/marca2.png" alt="Marca 2" loading="lazy" />
                 </a>
                 <a href="#" class="logo-item">
-                  <img src="img/marca3.png" alt="Marca 3" />
+                  <img src="img/marca3.png" alt="Marca 3" loading="lazy" />
                 </a>
                 <a href="#" class="logo-item">
-                  <img src="img/marca4.png" alt="Marca 4" />
+                  <img src="img/marca4.png" alt="Marca 4" loading="lazy" />
                 </a>
                 <a href="#" class="logo-item">
-                  <img src="img/marca5.png" alt="Marca 5" />
+                  <img src="img/marca5.png" alt="Marca 5" loading="lazy" />
                 </a>
               </div>
             </div>
 
-            <button class="logos-nav next" aria-label="Siguiente marca">&#10095;</button>
+            <button class="logos-nav next" aria-label="Siguiente marca">
+              &#10095;
+            </button>
           </div>
         </div>
         <!-- FIN CARRUSEL -->
       </div>
 
       <div class="scroll-arrow">
-        <svg width="30px" height="20px">
+        <svg width="30px" height="20px" aria-hidden="true">
           <path
             stroke="#ffffff"
             fill="none"
@@ -358,7 +320,10 @@
     </section>
 
     <!-- SECTION E (POR QUÉ MAKINTEC, VIDEO DE FONDO) -->
-    <section class="section-e">
+    <section
+      class="section-e"
+      aria-label="Por qué elegir a MAKINTEC como aliado"
+    >
       <video
         class="bg-video"
         autoplay
@@ -375,47 +340,21 @@
         <h4>¿Por qué elegirnos?</h4>
         <h2>Aliado técnico, no solo proveedor</h2>
 
-        <p
-          style="
-            max-width: 620px;
-            margin-top: 12px;
-            text-transform:none;
-            font-size:16px;
-            line-height:1.6;
-          "
-        >
+        <p class="section-paragraph section-paragraph--wide">
           Escuchamos a su equipo de mantenimiento y producción, proponemos alternativas
           viables y ejecutamos con la precisión que requiere la industria moderna.
         </p>
 
-        <div
-          style="
-            margin-top:20px;
-            display:flex;
-            flex-wrap:wrap;
-            gap:14px;
-            font-size:13px;
-            text-transform:uppercase;
-            letter-spacing:1px;
-          "
-        >
-          <span style="padding:8px 14px; border:1px solid #333; border-radius:999px;">
-            Atención en sitio
-          </span>
-          <span style="padding:8px 14px; border:1px solid #333; border-radius:999px;">
-            Proyectos llave en mano
-          </span>
-          <span style="padding:8px 14px; border:1px solid #333; border-radius:999px;">
-            Balance costo–beneficio
-          </span>
-          <span style="padding:8px 14px; border:1px solid #333; border-radius:999px;">
-            Equipo técnico especializado
-          </span>
+        <div class="why-tags">
+          <span>Atención en sitio</span>
+          <span>Proyectos llave en mano</span>
+          <span>Balance costo–beneficio</span>
+          <span>Equipo técnico especializado</span>
         </div>
       </div>
 
       <div class="scroll-arrow">
-        <svg width="30px" height="20px">
+        <svg width="30px" height="20px" aria-hidden="true">
           <path
             stroke="#ffffff"
             fill="none"
@@ -427,7 +366,11 @@
     </section>
 
     <!-- SECTION F (CONTACTO) -->
-    <section id="contacto" class="section-f contact-section">
+    <section
+      id="contacto"
+      class="section-f contact-section"
+      aria-label="Formulario de contacto"
+    >
       <div class="contact-overlay"></div>
 
       <div class="section-inner contact-inner">
@@ -437,7 +380,13 @@
           proyectos de metalmecánica, transportadores y mantenimiento industrial.
         </p>
 
-        <form id="contact-form" class="contact-form" method="POST">
+        <form
+          id="contact-form"
+          class="contact-form"
+          method="POST"
+          novalidate
+          autocomplete="on"
+        >
           <div id="form-alert" class="form-alert" aria-live="polite"></div>
 
           <div class="form-row">
@@ -523,7 +472,7 @@
     <footer>
       <ul>
         <li class="footer-logo">
-          <img src="img/logo.png" alt="MAKINTEC" />
+          <img src="img/logo.png" alt="MAKINTEC" loading="lazy" />
         </li>
         <li>MAKINTEC © 2024</li>
         <li><a href="#">LinkedIn</a></li>

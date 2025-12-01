@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;600;700&display=swap');
 
+/* =========================
+   VARIABLES BÁSICAS
+========================= */
+:root {
+  --bg-main: #000;
+  --text-main: #ffffff;
+  --text-soft: #aaaaaa;
+  --accent: #ff9b2f;
+  --accent-soft: rgba(255, 155, 47, 0.55);
+  --border-soft: #333333;
+}
+
 /* RESET BÁSICO */
 *,
 *::before,
@@ -17,8 +29,8 @@ body {
 
 body {
   font-family: 'Familjen Grotesk', sans-serif;
-  background: #000;
-  color: #fff;
+  background: var(--bg-main);
+  color: var(--text-main);
   overflow-x: hidden;                 /* Evita scroll lateral */
   -webkit-text-size-adjust: 100%;     /* Evita zoom raro en iPhone */
   overscroll-behavior-x: none;
@@ -34,7 +46,7 @@ video {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: var(--text-main);
 }
 
 ul {
@@ -86,6 +98,8 @@ ul {
   position: relative;
   margin-right: 20px;
   padding-bottom: 2px;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 
 /* Bottom border hover */
@@ -114,14 +128,14 @@ ul {
 
 section {
   position: relative;
-  width: 100vw;              /* fuerza ancho completo */
+  width: 100vw;
   max-width: 100vw;
   min-height: 100vh;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   text-transform: uppercase;
-  overflow: hidden;          /* evita que algo se salga lateralmente */
+  overflow: hidden;
 }
 
 /* Contenido principal desktop */
@@ -130,7 +144,7 @@ section {
   bottom: 200px;
   left: 150px;
   max-width: 560px;
-  z-index: 2;                 /* por encima del video y overlay */
+  z-index: 2; /* por encima del video y overlays */
 }
 
 .section-inner h4 {
@@ -153,6 +167,19 @@ section {
   animation-fill-mode: both;
 }
 
+/* Texto genérico */
+.section-paragraph {
+  text-transform: none;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.section-paragraph--wide {
+  max-width: 620px;
+  margin-top: 14px;
+}
+
 /* ------------------------------------- */
 /* BACKGROUND IMAGES (fallback) */
 /* ------------------------------------- */
@@ -163,61 +190,260 @@ section {
   overflow: hidden;
 }
 
-/* SECTION B: Servicios con video */
-.section-b {
-  position: relative;
-  overflow: hidden;
-  background-color: #000;
-}
-
-/* Capa oscura suave para lectura del texto */
-.section-b::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at left, rgba(0, 0, 0, 0.78), transparent 60%);
-  z-index: 1;
-}
-
 .section-c { background-image: url('../img/section-c.webp'); }
 .section-d { background-image: url('../img/section-d.png'); }
 .section-e { background-image: url('../img/section-e.webp'); }
 .section-f { background-image: url('../img/section-f.jpg'); }
 
 /* ------------------------------------- */
-/* VIDEO FULLSCREEN OPTIMIZADO           */
+/* VIDEO FULLSCREEN                      */
 /* ------------------------------------- */
 
-.bg-video,
-.bg-video-servicios {
+.bg-video {
   position: absolute;
-  inset: 0;             /* top/right/bottom/left = 0 */
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;    /* Hace que el 1920x1080 se adapte bien */
+  object-fit: cover;
   object-position: 55% center;
   z-index: 0;
   pointer-events: none;
   background: #000;
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.16s ease-in-out;
 }
-
-/* En servicios enfocamos más a la derecha (logo naranja) en desktop */
-.bg-video-servicios {
-  object-position: 88% center !important;
-}
-
 
 /* Fix especial Safari/iPhone */
 @supports (-webkit-touch-callout: none) {
-  .bg-video,
-  .bg-video-servicios {
+  .bg-video {
     width: 100%;
     height: 100%;
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
   }
+}
+
+/* ------------------------------------- */
+/* SECTION B – FONDO ANIMADO (SIN VIDEO) */
+/* ------------------------------------- */
+
+.section-b {
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Capa principal animada (JS mueve fondo) */
+.services-anim-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 45%, rgba(255, 152, 0, 0.45), transparent 60%),
+    radial-gradient(circle at 95% 10%, rgba(255, 255, 255, 0.08), transparent 65%),
+    radial-gradient(circle at 80% 100%, rgba(255, 152, 0, 0.35), transparent 60%),
+    linear-gradient(to right, #000 0%, #050505 40%, #000 100%);
+  transition:
+    transform 0.18s ease-out,
+    background-position 0.18s ease-out;
+  will-change: transform, background-position;
+}
+
+/* Capa oscura para lectura de texto */
+.section-b-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(circle at left, rgba(0, 0, 0, 0.9), transparent 65%);
+  pointer-events: none;
+}
+
+/* Orbitas (círculos que giran, JS toca transform) */
+.services-orbit {
+  position: absolute;
+  right: -140px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 0 18px rgba(255, 152, 0, 0.35),
+    0 0 40px rgba(0, 0, 0, 0.9) inset;
+  backdrop-filter: blur(4px);
+  animation: orbitRotate 28s linear infinite;
+  will-change: transform;
+}
+
+.services-orbit--outer {
+  width: 420px;
+  height: 420px;
+}
+
+.services-orbit--inner {
+  width: 260px;
+  height: 260px;
+  right: -60px;
+  animation-duration: 34s;
+  animation-direction: reverse;
+}
+
+/* Líneas verticales tipo circuito */
+.services-line {
+  position: absolute;
+  width: 2px;
+  height: 140%;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  filter: drop-shadow(0 0 14px rgba(255, 155, 47, 0.8));
+  opacity: 0.75;
+  animation: lineScroll 16s linear infinite;
+  will-change: transform, opacity;
+}
+
+.services-line--1 { right: 22%; animation-delay: -4s; }
+.services-line--2 { right: 16%; animation-delay: -8s; }
+.services-line--3 { right: 10%; animation-delay: -12s; }
+
+/* Puntos / nodos flotando */
+.services-dots {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  width: 220px;
+  height: 220px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.services-dots span {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #ffb347;
+  box-shadow: 0 0 16px rgba(255, 179, 71, 0.9);
+}
+
+.services-dots span:nth-child(1) {
+  top: 6%;
+  left: 58%;
+  animation: dotFloat 4.5s ease-in-out infinite;
+}
+
+.services-dots span:nth-child(2) {
+  top: 48%;
+  left: 80%;
+  animation: dotFloat 5.8s ease-in-out infinite;
+}
+
+.services-dots span:nth-child(3) {
+  top: 78%;
+  left: 50%;
+  animation: dotFloat 6.2s ease-in-out infinite;
+}
+
+/* Contenedor de contenido de servicios */
+.section-inner--services {
+  position: relative;
+  z-index: 2;
+}
+
+/* Tags arriba de las cards */
+.services-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.services-tags span {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.75);
+  color: var(--text-soft);
+}
+
+/* Grid de tarjetas */
+.services-grid {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  max-width: 720px;
+}
+
+.service-card {
+  flex: 1 1 210px;
+  border: 1px solid var(--border-soft);
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #111, #050505);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.22s ease-out,
+    box-shadow 0.22s ease-out,
+    border-color 0.22s ease-out,
+    background 0.22s ease-out;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top left, rgba(255, 155, 47, 0.12), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+  pointer-events: none;
+}
+
+.service-card h5 {
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #c9c9c9;
+}
+
+.service-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  text-transform: none;
+  line-height: 1.6;
+  color: #e2e2e2;
+}
+
+/* Hover de card -> efecto “producto caro” */
+.service-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 155, 47, 0.65);
+  background: radial-gradient(circle at top left, rgba(255, 155, 47, 0.14), #050505);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* Animaciones clave section B */
+@keyframes orbitRotate {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to   { transform: translateY(-50%) rotate(360deg); }
+}
+
+@keyframes lineScroll {
+  0%   { transform: translateY(-20%); opacity: 0; }
+  10%  { opacity: 0.9; }
+  90%  { opacity: 0.9; }
+  100% { transform: translateY(-100%); opacity: 0; }
+}
+
+@keyframes dotFloat {
+  0%, 100% { transform: translateY(-4px); opacity: 0.9; }
+  50%      { transform: translateY(4px); opacity: 1; }
 }
 
 /* ------------------------------------- */
@@ -237,6 +463,14 @@ section {
   font-weight: bold;
   overflow: hidden;
   z-index: 3;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.btn span {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
 }
 
 .btn:hover span {
@@ -250,7 +484,7 @@ section {
   width: 100%;
   height: 100%;
   background-color: #fff;
-  z-index: -1;
+  z-index: 1;
   transform: translateY(100%);
   transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -299,7 +533,7 @@ footer ul li {
 
 footer ul li a {
   color: #fff;
-  transition: color 0.6s;
+  transition: color 0.3s ease;
 }
 
 footer ul li a:hover {
@@ -406,7 +640,7 @@ footer ul li.footer-logo img {
 .mobile-main-menu ul li a:hover { color: #aaa; }
 
 /* ------------------------------------- */
-/* INNER PAGES */
+/* INNER PAGES (por si las usas) */
 /* ------------------------------------- */
 
 .bg-falcon-9 { background-image: url('../img/falcon-9.webp'); }
@@ -451,7 +685,7 @@ footer ul li.footer-logo img {
 .stats div h4 { font-size: 24px; }
 
 /* ------------------------------------- */
-/* ANIMATIONS */
+/* ANIMATIONS GENERALES */
 /* ------------------------------------- */
 
 @keyframes fadeInUp {
@@ -729,6 +963,24 @@ footer ul li.footer-logo img {
   .section-inner h2 {
     font-size: 40px;
   }
+
+  .services-orbit--outer {
+    width: 360px;
+    height: 360px;
+    right: -160px;
+  }
+
+  .services-orbit--inner {
+    width: 220px;
+    height: 220px;
+    right: -80px;
+  }
+
+  .services-dots {
+    right: 10px;
+    width: 180px;
+    height: 180px;
+  }
 }
 
 @media (max-width: 960px) {
@@ -838,15 +1090,48 @@ footer ul li.footer-logo img {
     object-position: 55% center;
   }
 
-  /* Video servicios: enfoca más el engrane a la derecha en móvil */
-  .section-b .bg-video-servicios { object-position: 82% center; }
-
   .section-b,
   .section-c,
   .section-d,
   .section-e,
   .section-f {
     background-position: center right;
+  }
+
+  /* Ajustes animación servicios en móvil */
+  .services-anim-layer {
+    background:
+      radial-gradient(circle at 90% 30%, rgba(255, 152, 0, 0.4), transparent 65%),
+      linear-gradient(to bottom, #000 0%, #020202 60%, #000 100%);
+  }
+
+  .services-orbit--outer {
+    width: 260px;
+    height: 260px;
+    right: -120px;
+    top: 58%;
+  }
+
+  .services-orbit--inner {
+    width: 180px;
+    height: 180px;
+    right: -40px;
+    top: 60%;
+  }
+
+  .services-line--1 { right: 12%; }
+  .services-line--2 { right: 8%; }
+  .services-line--3 { right: 4%; }
+
+  .services-dots {
+    right: 0;
+    top: 63%;
+    width: 150px;
+    height: 150px;
+  }
+
+  .services-grid {
+    gap: 16px;
   }
 
   .section-inner-center {
@@ -953,9 +1238,21 @@ footer ul li.footer-logo img {
     object-position: 40% center;
   }
 
-  /* Afinamos todavía más en móvil pequeño la posición del video de servicios */
-  .section-b .bg-video-servicios {
-    object-position: 80% center;
+  .services-orbit--outer {
+    width: 220px;
+    height: 220px;
+    right: -110px;
+    top: 60%;
+  }
+
+  .services-orbit--inner {
+    width: 150px;
+    height: 150px;
+    right: -40px;
+  }
+
+  .services-line {
+    opacity: 0.6;
   }
 }
 

@@ -71,7 +71,9 @@ bgVideos.forEach((vid) => {
     const playPromise = vid.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => {
-        console.log('Autoplay bloqueado hasta interacción del usuario en algún video de fondo.');
+        console.log(
+          'Autoplay bloqueado hasta interacción del usuario en algún video de fondo.'
+        );
       });
     }
   });
@@ -114,91 +116,106 @@ if (heroVideo) {
 }
 
 // ============================
-// VIDEO DE SERVICIOS (SECTION B - "Mi video-14.mp4")
+// SECTION B – ANIMACIÓN INTERACTIVA TIPO SPLINE
 // ============================
-// En el HTML ya tienes:
-// <section id="servicios" class="section-b">
-//   <video class="bg-video bg-video-servicios" ...>
-//     <source src="img/Mi video-14.mp4" type="video/mp4" />
-//   </video>
+const servicesSection = document.querySelector('.section-b');
+const servicesAnimLayer = document.querySelector('.services-anim-layer');
+const servicesOrbits = document.querySelectorAll('.services-orbit');
+const servicesLines = document.querySelectorAll('.services-line');
+const servicesDots = document.querySelectorAll('.services-dots span');
+const serviceCards = document.querySelectorAll('.service-card');
 
-const servicesVideo = document.querySelector('.section-b .bg-video');
+if (servicesSection) {
+  const handleMouseMove = (e) => {
+    const rect = servicesSection.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width - 0.5;
+    const relY = (e.clientY - rect.top) / rect.height - 0.5;
 
-if (servicesVideo) {
-  let restartingServices = false;
+    const moveX = relX * 24;
+    const moveY = relY * 18;
 
-  servicesVideo.addEventListener('timeupdate', () => {
-    if (!servicesVideo.duration) return;
-
-    const remaining = servicesVideo.duration - servicesVideo.currentTime;
-
-    if (!restartingServices && remaining <= 0.3) {
-      restartingServices = true;
-
-      servicesVideo.style.opacity = '0';
-
-      setTimeout(() => {
-        servicesVideo.currentTime = 0.01;
-
-        const playPromise = servicesVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            console.log('No se pudo reproducir el video al reiniciar (servicios).');
-          });
-        }
-
-        servicesVideo.style.opacity = '1';
-        restartingServices = false;
-      }, 400);
+    if (servicesAnimLayer) {
+      servicesAnimLayer.style.transform = `translate3d(${moveX * 0.6}px, ${
+        moveY * 0.6
+      }px, 0)`;
     }
-  });
 
-  // ------------------------------------------------
-  // EFECTO EXTRA: PANE0 IZQUIERDA → DERECHA SUAVE
-  // ------------------------------------------------
-  // Va de 10% (izquierda) a 90% (derecha) y vuelve.
+    servicesOrbits.forEach((orbit, index) => {
+      const depth = index === 0 ? 1.0 : 1.4;
+      orbit.style.transform = `translate3d(${moveX * depth}px, ${
+        moveY * depth
+      }px, 0)`;
+    });
 
-  let panPos = 10;   // empezamos mirando más a la izquierda
-  let panDir = 1;    // 1 = hacia la derecha, -1 = hacia la izquierda
+    servicesLines.forEach((line, index) => {
+      const depth = 0.5 + index * 0.25;
+      line.style.transform = `translate3d(${moveX * depth}px, ${
+        moveY * depth
+      }px, 0)`;
+    });
 
-  const startPanEffect = () => {
-    const pan = () => {
-      // velocidad del movimiento (sube/baja este valor)
-      panPos += panDir * 0.05;
-
-      // límites del recorrido (10% ↔ 90%)
-      if (panPos >= 90) panDir = -1;   // cuando llega a la derecha, regresa
-      if (panPos <= 10) panDir = 1;    // cuando llega a la izquierda, vuelve a ir a la derecha
-
-      servicesVideo.style.objectPosition = `${panPos}% center`;
-      requestAnimationFrame(pan);
-    };
-
-    requestAnimationFrame(pan);
+    servicesDots.forEach((dot, index) => {
+      const depth = 1 + index * 0.3;
+      dot.style.transform = `translate3d(${moveX * depth}px, ${
+        moveY * depth
+      }px, 0)`;
+    });
   };
 
-  // Iniciar el paneo cuando el video tenga metadata
-  if (servicesVideo.readyState >= 1) {
-    startPanEffect();
-  } else {
-    servicesVideo.addEventListener('loadedmetadata', startPanEffect, { once: true });
-  }
+  servicesSection.addEventListener('mousemove', handleMouseMove);
+
+  servicesSection.addEventListener('mouseenter', () => {
+    servicesSection.classList.add('services--hover');
+  });
+
+  servicesSection.addEventListener('mouseleave', () => {
+    servicesSection.classList.remove('services--hover');
+
+    if (servicesAnimLayer) {
+      servicesAnimLayer.style.transform = 'translate3d(0,0,0)';
+    }
+    servicesOrbits.forEach((orbit) => {
+      orbit.style.transform = 'translate3d(0,0,0)';
+    });
+    servicesLines.forEach((line) => {
+      line.style.transform = 'translate3d(0,0,0)';
+    });
+    servicesDots.forEach((dot) => {
+      dot.style.transform = 'translate3d(0,0,0)';
+    });
+  });
+
+  serviceCards.forEach((card) => {
+    card.addEventListener('mouseenter', () => {
+      card.classList.add('service-card--active');
+      servicesOrbits.forEach((orbit) =>
+        orbit.classList.add('services-orbit--pulse')
+      );
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.classList.remove('service-card--active');
+      servicesOrbits.forEach((orbit) =>
+        orbit.classList.remove('services-orbit--pulse')
+      );
+    });
+  });
 }
+
 
 // ==========================================
 // CARRUSEL DE MARCAS — LOOP INFINITO REAL
 // ==========================================
 
-const slider = document.getElementById("logosSlider");
-const track = slider?.querySelector(".logos-track");
-const prevBtn = document.querySelector(".logos-nav.prev");
-const nextBtn = document.querySelector(".logos-nav.next");
+const slider = document.getElementById('logosSlider');
+const track = slider?.querySelector('.logos-track');
+const prevBtn = document.querySelector('.logos-nav.prev');
+const nextBtn = document.querySelector('.logos-nav.next');
 
 if (slider && track) {
-
   // 1) CLONAR LOS LOGOS PARA EL LOOP
   const logos = Array.from(track.children);
-  logos.forEach(logo => {
+  logos.forEach((logo) => {
     const clone = logo.cloneNode(true);
     track.appendChild(clone);
   });
@@ -215,11 +232,11 @@ if (slider && track) {
     // Cuando pase el final → regresar
     if (position <= -TRACK_WIDTH) {
       position = 0;
-      track.style.transition = "none";
+      track.style.transition = 'none';
       track.style.transform = `translateX(${position}px)`;
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          track.style.transition = "transform 0.35s ease-out";
+          track.style.transition = 'transform 0.35s ease-out';
           position += direction * STEP;
           track.style.transform = `translateX(${position}px)`;
         });
@@ -232,44 +249,48 @@ if (slider && track) {
       position = -TRACK_WIDTH;
     }
 
-    track.style.transition = "transform 0.35s ease-out";
+    track.style.transition = 'transform 0.35s ease-out';
     track.style.transform = `translateX(${position}px)`;
   }
 
   // Botones
-  if (prevBtn) prevBtn.addEventListener("click", () => move(1));
-  if (nextBtn) nextBtn.addEventListener("click", () => move(-1));
+  if (prevBtn) prevBtn.addEventListener('click', () => move(1));
+  if (nextBtn) nextBtn.addEventListener('click', () => move(-1));
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("contact-form");
-  const alertBox = document.getElementById("form-alert");
+// ============================
+// FORMULARIO DE CONTACTO
+// ============================
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contact-form');
+  const alertBox = document.getElementById('form-alert');
 
   if (!form || !alertBox) return;
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault(); // ❌ no recargar ni cambiar de página
 
     // limpiar estado previo de la alerta
-    alertBox.className = "form-alert";
-    alertBox.textContent = "";
+    alertBox.className = 'form-alert';
+    alertBox.textContent = '';
 
     const submitBtn = form.querySelector('button[type="submit"]');
-    const spanText = submitBtn?.querySelector("span");
+    const spanText = submitBtn?.querySelector('span');
     const originalText = spanText ? spanText.textContent : submitBtn.textContent;
 
     // estado "enviando..."
     submitBtn.disabled = true;
-    if (spanText) spanText.textContent = "Enviando...";
-    else submitBtn.textContent = "Enviando...";
+    if (spanText) spanText.textContent = 'Enviando...';
+    else submitBtn.textContent = 'Enviando...';
 
     try {
       const formData = new FormData(form);
 
-      const response = await fetch("https://formspree.io/f/mvgjrdpn", {
-        method: "POST",
+      const response = await fetch('https://formspree.io/f/mvgjrdpn', {
+        method: 'POST',
         headers: {
-          Accept: "application/json",
+          Accept: 'application/json',
         },
         body: formData,
       });
@@ -278,16 +299,16 @@ document.addEventListener("DOMContentLoaded", () => {
         form.reset();
 
         alertBox.textContent =
-          "✅ Gracias, hemos recibido su mensaje. El equipo de MAKINTEC se estará comunicando con usted pronto.";
-        alertBox.classList.add("form-alert--success", "form-alert--show");
+          '✅ Gracias, hemos recibido su mensaje. El equipo de MAKINTEC se estará comunicando con usted pronto.';
+        alertBox.classList.add('form-alert--success', 'form-alert--show');
       } else {
-        throw new Error("Error al enviar el formulario");
+        throw new Error('Error al enviar el formulario');
       }
     } catch (error) {
       console.error(error);
       alertBox.textContent =
-        "⚠️ Ocurrió un problema al enviar su mensaje. Por favor, inténtelo de nuevo o contáctenos por WhatsApp.";
-      alertBox.classList.add("form-alert--error", "form-alert--show");
+        '⚠️ Ocurrió un problema al enviar su mensaje. Por favor, inténtelo de nuevo o contáctenos por WhatsApp.';
+      alertBox.classList.add('form-alert--error', 'form-alert--show');
     } finally {
       // devolver botón a estado normal
       submitBtn.disabled = false;
@@ -297,7 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ocultar alerta después de unos segundos
     setTimeout(() => {
-      alertBox.classList.remove("form-alert--show");
+      alertBox.classList.remove('form-alert--show');
     }, 6000);
   });
 });
