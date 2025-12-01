@@ -9,16 +9,28 @@ const counters = document.querySelectorAll('.counter');
 let scrollStarted = false;
 
 if (btn) {
-  btn.addEventListener('click', navToggle);
-}
-document.addEventListener('scroll', scrollPage);
+  btn.addEventListener('click', () => {
+    const isOpen = btn.classList.toggle('open');
+    overlay.classList.toggle('overlay-show');
+    document.body.classList.toggle('stop-scrolling');
+    menu.classList.toggle('show-menu');
 
-function navToggle() {
-  btn.classList.toggle('open');
-  overlay.classList.toggle('overlay-show');
-  document.body.classList.toggle('stop-scrolling');
-  menu.classList.toggle('show-menu');
+    // Accesibilidad
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
 }
+
+if (overlay) {
+  overlay.addEventListener('click', () => {
+    btn?.classList.remove('open');
+    overlay.classList.remove('overlay-show');
+    document.body.classList.remove('stop-scrolling');
+    menu?.classList.remove('show-menu');
+    btn?.setAttribute('aria-expanded', 'false');
+  });
+}
+
+document.addEventListener('scroll', scrollPage);
 
 function scrollPage() {
   const scrollPos = window.scrollY;
@@ -27,7 +39,7 @@ function scrollPage() {
     countUp();
     scrollStarted = true;
   } else if (scrollPos < 100 && scrollStarted) {
-    reset();
+    resetCounters();
     scrollStarted = false;
   }
 }
@@ -53,7 +65,7 @@ function countUp() {
   });
 }
 
-function reset() {
+function resetCounters() {
   counters.forEach((counter) => (counter.innerHTML = '0'));
 }
 
@@ -116,152 +128,211 @@ if (heroVideo) {
 }
 
 // ============================
-// SECTION B – ANIMACIÓN INTERACTIVA TIPO SPLINE
+// SECTION B – ANIMACIÓN TIPO SPLINE (MOUSE PARALLAX)
 // ============================
-const servicesSection = document.querySelector('.section-b');
-const servicesAnimLayer = document.querySelector('.services-anim-layer');
-const servicesOrbits = document.querySelectorAll('.services-orbit');
-const servicesLines = document.querySelectorAll('.services-line');
-const servicesDots = document.querySelectorAll('.services-dots span');
-const serviceCards = document.querySelectorAll('.service-card');
 
-if (servicesSection) {
-  const handleMouseMove = (e) => {
-    const rect = servicesSection.getBoundingClientRect();
-    const relX = (e.clientX - rect.left) / rect.width - 0.5;
-    const relY = (e.clientY - rect.top) / rect.height - 0.5;
+(function () {
+  const sectionB = document.querySelector('.section-b');
+  if (!sectionB) return;
 
-    const moveX = relX * 24;
-    const moveY = relY * 18;
+  const root = document.documentElement;
 
-    if (servicesAnimLayer) {
-      servicesAnimLayer.style.transform = `translate3d(${moveX * 0.6}px, ${
-        moveY * 0.6
-      }px, 0)`;
-    }
+  const handleMove = (e) => {
+    const rect = sectionB.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-    servicesOrbits.forEach((orbit, index) => {
-      const depth = index === 0 ? 1.0 : 1.4;
-      orbit.style.transform = `translate3d(${moveX * depth}px, ${
-        moveY * depth
-      }px, 0)`;
-    });
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-    servicesLines.forEach((line, index) => {
-      const depth = 0.5 + index * 0.25;
-      line.style.transform = `translate3d(${moveX * depth}px, ${
-        moveY * depth
-      }px, 0)`;
-    });
+    const normX = (x - centerX) / centerX; // -1 a 1
+    const normY = (y - centerY) / centerY; // -1 a 1
 
-    servicesDots.forEach((dot, index) => {
-      const depth = 1 + index * 0.3;
-      dot.style.transform = `translate3d(${moveX * depth}px, ${
-        moveY * depth
-      }px, 0)`;
-    });
+    root.style.setProperty('--mouse-x', normX.toString());
+    root.style.setProperty('--mouse-y', normY.toString());
   };
 
-  servicesSection.addEventListener('mousemove', handleMouseMove);
+  const handleLeave = () => {
+    root.style.setProperty('--mouse-x', '0');
+    root.style.setProperty('--mouse-y', '0');
+  };
 
-  servicesSection.addEventListener('mouseenter', () => {
-    servicesSection.classList.add('services--hover');
-  });
+  // Desktop: parallax con mouse
+  sectionB.addEventListener('mousemove', handleMove);
+  sectionB.addEventListener('mouseleave', handleLeave);
 
-  servicesSection.addEventListener('mouseleave', () => {
-    servicesSection.classList.remove('services--hover');
-
-    if (servicesAnimLayer) {
-      servicesAnimLayer.style.transform = 'translate3d(0,0,0)';
-    }
-    servicesOrbits.forEach((orbit) => {
-      orbit.style.transform = 'translate3d(0,0,0)';
-    });
-    servicesLines.forEach((line) => {
-      line.style.transform = 'translate3d(0,0,0)';
-    });
-    servicesDots.forEach((dot) => {
-      dot.style.transform = 'translate3d(0,0,0)';
-    });
-  });
-
-  serviceCards.forEach((card) => {
-    card.addEventListener('mouseenter', () => {
-      card.classList.add('service-card--active');
-      servicesOrbits.forEach((orbit) =>
-        orbit.classList.add('services-orbit--pulse')
-      );
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.classList.remove('service-card--active');
-      servicesOrbits.forEach((orbit) =>
-        orbit.classList.remove('services-orbit--pulse')
-      );
-    });
-  });
-}
-
+  // Mobile / iPhone: auto-parallax muy suave
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    let t = 0;
+    const autoParallax = () => {
+      t += 0.01;
+      const nx = Math.sin(t) * 0.15;
+      const ny = Math.cos(t * 0.8) * 0.1;
+      root.style.setProperty('--mouse-x', nx.toString());
+      root.style.setProperty('--mouse-y', ny.toString());
+      requestAnimationFrame(autoParallax);
+    };
+    autoParallax();
+  }
+})();
 
 // ==========================================
-// CARRUSEL DE MARCAS — LOOP INFINITO REAL
+// CARRUSEL DE MARCAS — ORDEN + FLECHAS + SWIPE + AUTOPLAY
 // ==========================================
+(function () {
+  const slider = document.getElementById('logosSlider');
+  if (!slider) return;
 
-const slider = document.getElementById('logosSlider');
-const track = slider?.querySelector('.logos-track');
-const prevBtn = document.querySelector('.logos-nav.prev');
-const nextBtn = document.querySelector('.logos-nav.next');
+  const track = slider.querySelector('.logos-track');
+  const items = track ? Array.from(track.querySelectorAll('.logo-item')) : [];
+  const prevBtn = document.querySelector('.logos-nav.prev');
+  const nextBtn = document.querySelector('.logos-nav.next');
 
-if (slider && track) {
-  // 1) CLONAR LOS LOGOS PARA EL LOOP
-  const logos = Array.from(track.children);
-  logos.forEach((logo) => {
-    const clone = logo.cloneNode(true);
-    track.appendChild(clone);
-  });
+  if (!track || items.length === 0) return;
 
-  // 2) VARIABLES
-  let position = 0;
-  const STEP = 180;
-  const TRACK_WIDTH = track.scrollWidth / 2; // mitad = set original
+  let currentIndex = 0;
+  let itemStep = 0; // distancia en px entre un logo y el siguiente
+  let autoPlayId = null;
+  let isHover = false;
 
-  // 3) FUNCIÓN PARA MOVER CON LOOP
-  function move(direction) {
-    position += direction * STEP;
+  // Para swipe en móviles / iPhone
+  let touchStartX = 0;
+  let touchEndX = 0;
 
-    // Cuando pase el final → regresar
-    if (position <= -TRACK_WIDTH) {
-      position = 0;
-      track.style.transition = 'none';
-      track.style.transform = `translateX(${position}px)`;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          track.style.transition = 'transform 0.35s ease-out';
-          position += direction * STEP;
-          track.style.transform = `translateX(${position}px)`;
-        });
-      });
+  // Calcula la distancia entre el logo 0 y 1
+  const computeStep = () => {
+    if (items.length < 2) {
+      itemStep = items[0]?.offsetWidth || 180;
       return;
     }
 
-    // Cuando pase el inicio hacia atrás → saltar al final
-    if (position >= 0) {
-      position = -TRACK_WIDTH;
+    const prevTransform = track.style.transform;
+    track.style.transform = 'translateX(0px)';
+
+    const rect0 = items[0].getBoundingClientRect();
+    const rect1 = items[1].getBoundingClientRect();
+    itemStep = rect1.left - rect0.left;
+
+    // fallback si por alguna razón sale 0 o negativo
+    if (!itemStep || itemStep <= 0) {
+      itemStep = items[0].offsetWidth + 40; // 40px ~ gap por defecto
     }
 
-    track.style.transition = 'transform 0.35s ease-out';
-    track.style.transform = `translateX(${position}px)`;
+    track.style.transform = prevTransform;
+  };
+
+  const goToIndex = (index) => {
+    const total = items.length;
+    if (total === 0 || itemStep === 0) return;
+
+    // Loop lógico: después del último vuelve al primero
+    currentIndex = (index + total) % total;
+
+    const offset = -currentIndex * itemStep;
+    track.style.transform = `translateX(${offset}px)`;
+  };
+
+  const next = () => {
+    goToIndex(currentIndex + 1);
+  };
+
+  const prev = () => {
+    goToIndex(currentIndex - 1);
+  };
+
+  const startAutoplay = () => {
+    if (autoPlayId) return;
+    autoPlayId = setInterval(() => {
+      if (!isHover) {
+        next();
+      }
+    }, 2600); // tiempo entre movimientos
+  };
+
+  const stopAutoplay = () => {
+    if (!autoPlayId) return;
+    clearInterval(autoPlayId);
+    autoPlayId = null;
+  };
+
+  // Hover → pausa (solo desktop)
+  slider.addEventListener('mouseenter', () => {
+    isHover = true;
+  });
+
+  slider.addEventListener('mouseleave', () => {
+    isHover = false;
+  });
+
+  // Click en flechas
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      prev();
+    });
   }
 
-  // Botones
-  if (prevBtn) prevBtn.addEventListener('click', () => move(1));
-  if (nextBtn) nextBtn.addEventListener('click', () => move(-1));
-}
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      next();
+    });
+  }
 
-// ============================
-// FORMULARIO DE CONTACTO
-// ============================
+  // Swipe en móviles / iPhone
+  slider.addEventListener(
+    'touchstart',
+    (e) => {
+      if (!e.touches || !e.touches.length) return;
+      touchStartX = e.touches[0].clientX;
+      touchEndX = touchStartX;
+    },
+    { passive: true }
+  );
 
+  slider.addEventListener(
+    'touchmove',
+    (e) => {
+      if (!e.touches || !e.touches.length) return;
+      touchEndX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  slider.addEventListener(
+    'touchend',
+    () => {
+      const deltaX = touchEndX - touchStartX;
+      const threshold = 50; // mínimo movimiento para considerar swipe
+
+      if (Math.abs(deltaX) > threshold) {
+        if (deltaX < 0) {
+          // swipe izquierda → siguiente
+          next();
+        } else {
+          // swipe derecha → anterior
+          prev();
+        }
+      }
+    },
+    { passive: true }
+  );
+
+  // Recalcular al redimensionar
+  window.addEventListener('resize', () => {
+    computeStep();
+    goToIndex(currentIndex);
+  });
+
+  // Inicializar carrusel
+  window.addEventListener('load', () => {
+    computeStep();
+    goToIndex(0);
+    startAutoplay();
+  });
+})();
+
+// ==========================================
+// FORMULARIO DE CONTACTO (FORMSPREE)
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contact-form');
   const alertBox = document.getElementById('form-alert');
@@ -269,9 +340,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!form || !alertBox) return;
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // ❌ no recargar ni cambiar de página
+    e.preventDefault();
 
-    // limpiar estado previo de la alerta
     alertBox.className = 'form-alert';
     alertBox.textContent = '';
 
@@ -279,7 +349,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const spanText = submitBtn?.querySelector('span');
     const originalText = spanText ? spanText.textContent : submitBtn.textContent;
 
-    // estado "enviando..."
     submitBtn.disabled = true;
     if (spanText) spanText.textContent = 'Enviando...';
     else submitBtn.textContent = 'Enviando...';
@@ -297,7 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (response.ok) {
         form.reset();
-
         alertBox.textContent =
           '✅ Gracias, hemos recibido su mensaje. El equipo de MAKINTEC se estará comunicando con usted pronto.';
         alertBox.classList.add('form-alert--success', 'form-alert--show');
@@ -310,13 +378,11 @@ document.addEventListener('DOMContentLoaded', () => {
         '⚠️ Ocurrió un problema al enviar su mensaje. Por favor, inténtelo de nuevo o contáctenos por WhatsApp.';
       alertBox.classList.add('form-alert--error', 'form-alert--show');
     } finally {
-      // devolver botón a estado normal
       submitBtn.disabled = false;
       if (spanText) spanText.textContent = originalText;
       else submitBtn.textContent = originalText;
     }
 
-    // ocultar alerta después de unos segundos
     setTimeout(() => {
       alertBox.classList.remove('form-alert--show');
     }, 6000);
